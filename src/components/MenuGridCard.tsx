@@ -23,16 +23,13 @@ export interface MenuGridCardProps {
 /** Card for the 2-column "Populaires" grid on a kitchen page. */
 export function MenuGridCard({ item, onPress, onAdd, style }: MenuGridCardProps) {
   const kcal = item.kcal !== undefined ? joinDot([formatKcal(item.kcal), item.note]) : item.note;
+  // "+" is a sibling of the pressable areas (never nested), so it stays reachable for screen readers.
   return (
-    <Touchable
-      onPress={onPress}
-      accessibilityRole="button"
-      accessibilityLabel={item.name}
-      accessibilityActions={onAdd ? [{ name: "add", label: t("menu.addShort") }] : undefined}
-      onAccessibilityAction={(e) => e.nativeEvent.actionName === "add" && onAdd?.()}
-      style={[styles.card, style]}
-    >
-      <FoodImage source={item.image} tint={item.tint ?? colors.tints[0]} height={m.imageHeight} radius={m.imageRadius} scale={ART_SCALE}>
+    <View style={[styles.card, style]}>
+      <View>
+        <Touchable onPress={onPress} accessible={false}>
+          <FoodImage source={item.image} tint={item.tint ?? colors.tints[0]} height={m.imageHeight} radius={m.imageRadius} scale={ART_SCALE} />
+        </Touchable>
         <IconButton
           icon="plus"
           variant="white"
@@ -41,8 +38,8 @@ export function MenuGridCard({ item, onPress, onAdd, style }: MenuGridCardProps)
           onPress={onAdd}
           style={styles.add}
         />
-      </FoodImage>
-      <View style={styles.body}>
+      </View>
+      <Touchable onPress={onPress} accessibilityRole="button" accessibilityLabel={item.name} style={styles.body}>
         <Text variant="cardTitle">{formatPrice(item.price)}</Text>
         <Text variant="cardTitle" numberOfLines={2}>
           {item.name}
@@ -52,8 +49,8 @@ export function MenuGridCard({ item, onPress, onAdd, style }: MenuGridCardProps)
             {kcal}
           </Text>
         )}
-      </View>
-    </Touchable>
+      </Touchable>
+    </View>
   );
 }
 

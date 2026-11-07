@@ -33,23 +33,20 @@ export function DishCard({ item, kitchen, onPress, favorite = false, onToggleFav
   const meta = kitchen ? joinDot([kitchen.name, formatEta(kitchen.etaMin, kitchen.etaMax)]) : undefined;
 
   const favoriteLabel = favorite ? t("common.removeFromFavorites") : t("common.addToFavorites");
-  // On iOS a pressable card hides inner buttons from VoiceOver, so the heart
-  // is also offered as an accessibility action on the card.
+  // The heart is a sibling of the card's pressable areas (never nested), so
+  // screen readers reach it as its own button on iOS, Android and web.
   return (
-    <Touchable
-      onPress={onPress}
-      accessibilityRole="button"
-      accessibilityLabel={joinDot([item.name, meta])}
-      accessibilityActions={onToggleFavorite ? [{ name: "favorite", label: favoriteLabel }] : undefined}
-      onAccessibilityAction={(e) => e.nativeEvent.actionName === "favorite" && onToggleFavorite?.()}
-      style={[styles.card, { width }, style]}
-    >
-      <FoodImage source={item.image} tint={item.tint ?? colors.tints[0]} height={m.imageHeight} radius={m.radius} scale={ART_SCALE}>
-        {discount > 0 ? (
-          <Badge label={formatDiscountPercent(discount)} tone="discount" shape="rounded" style={styles.badge} />
-        ) : item.protein ? (
-          <Badge label={formatProtein(item.protein)} tone="success" shape="rounded" style={styles.badge} />
-        ) : null}
+    <View style={[styles.card, { width }, style]}>
+      <View>
+        <Touchable onPress={onPress} accessible={false}>
+          <FoodImage source={item.image} tint={item.tint ?? colors.tints[0]} height={m.imageHeight} radius={m.radius} scale={ART_SCALE}>
+            {discount > 0 ? (
+              <Badge label={formatDiscountPercent(discount)} tone="discount" shape="rounded" style={styles.badge} />
+            ) : item.protein ? (
+              <Badge label={formatProtein(item.protein)} tone="success" shape="rounded" style={styles.badge} />
+            ) : null}
+          </FoodImage>
+        </Touchable>
         {onToggleFavorite && (
           <IconButton
             icon="heart"
@@ -63,8 +60,8 @@ export function DishCard({ item, kitchen, onPress, favorite = false, onToggleFav
             style={styles.heart}
           />
         )}
-      </FoodImage>
-      <View style={styles.body}>
+      </View>
+      <Touchable onPress={onPress} accessibilityRole="button" accessibilityLabel={joinDot([item.name, meta])} style={styles.body}>
         <Text variant="cardTitle" numberOfLines={1}>
           {item.name}
         </Text>
@@ -82,8 +79,8 @@ export function DishCard({ item, kitchen, onPress, favorite = false, onToggleFav
           )}
           {item.rating !== undefined && <Rating rating={item.rating} />}
         </View>
-      </View>
-    </Touchable>
+      </Touchable>
+    </View>
   );
 }
 

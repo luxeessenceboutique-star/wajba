@@ -28,16 +28,11 @@ export function MenuRow({ item, onPress, onAdd, divider = true, style }: MenuRow
   const addLabel = t("menu.add", { name: item.name });
   const kcal = item.kcal !== undefined ? joinDot([formatKcal(item.kcal), item.note]) : item.note;
 
+  // The "+" button is a sibling of the pressable areas (never nested inside),
+  // so it stays a separate, reachable button for screen readers.
   return (
-    <Touchable
-      onPress={onPress}
-      accessibilityRole="button"
-      accessibilityLabel={item.name}
-      accessibilityActions={onAdd ? [{ name: "add", label: t("menu.addShort") }] : undefined}
-      onAccessibilityAction={(e) => e.nativeEvent.actionName === "add" && onAdd?.()}
-      style={[styles.row, divider && styles.divider, style]}
-    >
-      <View style={styles.text}>
+    <View style={[styles.row, divider && styles.divider, style]}>
+      <Touchable onPress={onPress} accessibilityRole="button" accessibilityLabel={item.name} style={styles.text}>
         <Text variant="cardTitle" numberOfLines={2}>
           {item.name}
         </Text>
@@ -52,15 +47,18 @@ export function MenuRow({ item, onPress, onAdd, divider = true, style }: MenuRow
             </Text>
           )}
         </View>
-      </View>
+      </Touchable>
       {item.image ? (
-        <FoodImage source={item.image} tint={item.tint ?? colors.tints[0]} height={m.image} width={m.image} radius={m.imageRadius} scale={ART_SCALE}>
+        <View>
+          <Touchable onPress={onPress} accessible={false}>
+            <FoodImage source={item.image} tint={item.tint ?? colors.tints[0]} height={m.image} width={m.image} radius={m.imageRadius} scale={ART_SCALE} />
+          </Touchable>
           <IconButton icon="plus" variant="white" iconColor={colors.primary} accessibilityLabel={addLabel} onPress={onAdd} style={styles.add} />
-        </FoodImage>
+        </View>
       ) : (
         <IconButton icon="plus" variant="surface" iconColor={colors.primary} accessibilityLabel={addLabel} onPress={onAdd} />
       )}
-    </Touchable>
+    </View>
   );
 }
 
