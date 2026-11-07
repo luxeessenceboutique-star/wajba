@@ -24,7 +24,14 @@ export function PromoBanner({ promo, onPress, width = m.width, style }: PromoBan
   const label = [promo.badge, promo.title, promo.subtitle].filter(Boolean).join(". ");
 
   return (
-    <Touchable onPress={onPress} accessibilityRole="button" accessibilityLabel={label} style={[styles.card, { width, backgroundColor: bg }, style]}>
+    <Touchable
+      onPress={onPress}
+      disabled={!onPress}
+      accessible
+      accessibilityRole={onPress ? "button" : undefined}
+      accessibilityLabel={label}
+      style={[styles.card, { width, backgroundColor: bg }, style]}
+    >
       <FoodImage
         source={promo.image}
         tint="transparent"

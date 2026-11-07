@@ -21,6 +21,7 @@ export function KitchenAvatar({ kitchen, size = metrics.avatar.medium, bordered 
         styles.base,
         { width: size, height: size, borderRadius: size / 2, backgroundColor: kitchen.color },
         bordered && styles.bordered,
+        bordered && size >= metrics.avatar.large && { borderWidth: metrics.avatar.borderLarge },
         style,
       ]}
     >

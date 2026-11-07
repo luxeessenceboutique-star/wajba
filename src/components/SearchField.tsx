@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, View, type StyleProp, type TextInputProps, type ViewStyle } from "react-native";
+import { Platform, StyleSheet, TextInput, View, type StyleProp, type TextInputProps, type TextStyle, type ViewStyle } from "react-native";
 
 import { t } from "@/i18n";
 import { colors, metrics, typography } from "@/theme";
@@ -25,7 +25,7 @@ export function SearchField({ placeholder = t("search.placeholder"), onPress, st
         accessibilityLabel={t("search.label")}
         returnKeyType="search"
         maxFontSizeMultiplier={1.4}
-        style={styles.input}
+        style={[styles.input, webNoFocusRing]}
       />
     </View>
   );
@@ -37,6 +37,10 @@ export function SearchField({ placeholder = t("search.placeholder"), onPress, st
     </Touchable>
   );
 }
+
+// The field's grey pill already shows where typing goes; on web, drop the browser's
+// extra focus ring around the bare <input> ("none" isn't in RN's outlineStyle type).
+const webNoFocusRing = Platform.OS === "web" ? ({ outlineStyle: "none" } as unknown as TextStyle) : null;
 
 const styles = StyleSheet.create({
   field: {

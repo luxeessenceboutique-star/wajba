@@ -10,8 +10,8 @@ import { Text } from "./Text";
 import { Touchable } from "./Touchable";
 
 const m = metrics.menuGridCard;
-/** Illustration size relative to the 140 pt image. */
-const ART_SCALE = 1.45;
+/** Illustration size relative to the 140 pt image (200 / 140 in the design). */
+const ART_SCALE = 1.43;
 
 export interface MenuGridCardProps {
   item: MenuItem;
@@ -32,7 +32,7 @@ export function MenuGridCard({ item, onPress, onAdd, style }: MenuGridCardProps)
         </Touchable>
         <IconButton
           icon="plus"
-          variant="white"
+          variant="floating"
           iconColor={colors.primary}
           accessibilityLabel={t("menu.add", { name: item.name })}
           onPress={onAdd}
@@ -40,12 +40,19 @@ export function MenuGridCard({ item, onPress, onAdd, style }: MenuGridCardProps)
         />
       </View>
       <Touchable onPress={onPress} accessibilityRole="button" accessibilityLabel={item.name} style={styles.body}>
-        <Text variant="cardTitle">{formatPrice(item.price)}</Text>
-        <Text variant="cardTitle" numberOfLines={2}>
+        <View style={styles.priceRow}>
+          <Text variant="priceLarge">{formatPrice(item.price)}</Text>
+          {item.oldPrice !== undefined && item.oldPrice > item.price && (
+            <Text variant="cardMeta" color="mutedLight" strike>
+              {formatPrice(item.oldPrice)}
+            </Text>
+          )}
+        </View>
+        <Text variant="gridName" numberOfLines={2}>
           {item.name}
         </Text>
         {kcal && (
-          <Text variant="cardMeta" color="muted" numberOfLines={1}>
+          <Text variant="caption" color="muted" numberOfLines={1}>
             {kcal}
           </Text>
         )}
@@ -55,8 +62,9 @@ export function MenuGridCard({ item, onPress, onAdd, style }: MenuGridCardProps)
 }
 
 const styles = StyleSheet.create({
-  card: { gap: metrics.gap.l },
-  body: { gap: metrics.gap.xs },
+  card: { gap: metrics.gap.s },
+  body: { gap: metrics.gap.s },
+  priceRow: { flexDirection: "row", alignItems: "baseline", gap: metrics.gap.s },
   add: {
     position: "absolute",
     end: m.addInset,

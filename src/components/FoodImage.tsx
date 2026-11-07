@@ -50,12 +50,14 @@ export function FoodImage({
     : { accessible: false, importantForAccessibility: "no-hide-descendants" as const };
 
   let art: ReactNode = null;
+  let topAligned = false;
   if (source && isPhotoUrl(source)) {
     art = <Image source={{ uri: source }} style={StyleSheet.absoluteFill} contentFit="cover" transition={200} />;
   } else if (source && isIllustrationKey(source)) {
-    const { Component, scale: artScale, offsetY } = illustrations[source];
+    const { Component, scale: artScale, offsetY, align } = illustrations[source];
     const size = Math.round(height * scale * artScale);
     if (placement === "center") {
+      topAligned = align === "top";
       const translateY = height * offsetY + (offset?.y ?? 0);
       art = <Component width={size} height={size} style={[styles.noShrink, { transform: [{ translateX: offset?.x ?? 0 }, { translateY }] }]} />;
     } else {
@@ -68,7 +70,7 @@ export function FoodImage({
   // (heart, "+") stay reachable by screen readers.
   return (
     <View style={containerStyle}>
-      <View style={styles.art} pointerEvents="none" {...a11y}>
+      <View style={[styles.art, topAligned && styles.artTop]} pointerEvents="none" {...a11y}>
         {art}
       </View>
       {children}
@@ -79,6 +81,7 @@ export function FoodImage({
 const styles = StyleSheet.create({
   container: { overflow: "hidden", alignItems: "center", justifyContent: "center" },
   art: { position: "absolute", top: 0, bottom: 0, start: 0, end: 0, alignItems: "center", justifyContent: "center" },
+  artTop: { justifyContent: "flex-start" },
   corner: { position: "absolute" },
   // Oversized art must overflow (and be cropped), never shrink to fit — web flexbox shrinks by default.
   noShrink: { flexShrink: 0 },

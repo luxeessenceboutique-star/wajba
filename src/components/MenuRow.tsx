@@ -12,7 +12,7 @@ import { Touchable } from "./Touchable";
 
 const m = metrics.menuRow;
 /** Illustration size relative to the 96 pt image. */
-const ART_SCALE = 1.25;
+const ART_SCALE = 1.35;
 
 export interface MenuRowProps {
   item: MenuItem;

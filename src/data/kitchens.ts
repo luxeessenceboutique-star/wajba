@@ -20,6 +20,7 @@ export const kitchens: Kitchen[] = [
     promo: "−15 % sur les tajines jusqu'à 15h",
     coverImage: "tajine",
     coverTint: colors.terracottaTint,
+    sections: ["Tajines", "Couscous", "Pastillas", "Ftour", "Boissons"],
   },
   {
     id: "wajba-fit",
@@ -35,6 +36,8 @@ export const kitchens: Kitchen[] = [
     deliveryFee: 9,
     coverImage: "bowl",
     coverTint: colors.mintTint,
+    description: "Bowls équilibrés, protéines et calories affichées · Halal",
+    sections: ["Bowls", "Protéines"],
   },
   {
     id: "wajba-grill",
@@ -52,6 +55,8 @@ export const kitchens: Kitchen[] = [
     promo: "−10 % le soir",
     coverImage: "brochettes",
     coverTint: colors.saffronTint,
+    description: "Brochettes, kefta et grillades au feu de bois · Halal",
+    sections: ["Grillades", "À partager"],
   },
 ];
 

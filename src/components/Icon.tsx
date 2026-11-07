@@ -72,6 +72,8 @@ const icons = {
     shapes: [{ d: "M16 3c-1.5.2-3 1.4-3 3.2M12 8c-2-1-6-.5-6 5 0 4 2.5 8 4.5 8 1 0 1.5-.6 2.5-.6s1.5.6 2.5.6c1.6 0 3.2-2.4 3.8-4.6-1.8-.8-2.8-2.4-2.6-4.4.1-1.4 1-2.6 2.2-3.2C17.6 7 14.5 7 12 8z" }],
   },
   clock: { shapes: [{ circle: [12, 12, 9] }, { d: "M12 7v5l3 2" }] },
+  /** Generic "G" mark used on the Google button in the design (no third-party logo). */
+  google: { shapes: [{ circle: [12, 12, 10] }, { d: "M12 12h6" }] },
 } satisfies Record<string, IconDef>;
 
 export type IconName = keyof typeof icons;

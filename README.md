@@ -19,7 +19,9 @@ Built from the design handoff in [`design/`](design/) (spec: [`design/DESIGN_SPE
 4. Scan the QR code shown in the terminal: with the Expo Go app on Android, with the Camera app on iPhone.
    Phone and computer must be on the same Wi-Fi. If they can't see each other, use `npx expo start --tunnel`.
 
-Phase 1 opens directly on the component gallery (`/dev`).
+The app opens on the Splash / Login screen. Everything is mocked: "Continuer avec mon numéro"
+accepts any Moroccan mobile number and **any 4-digit code**; Google and Apple sign in instantly.
+The component gallery is still available from **Compte → Galerie des composants** (`/dev`).
 
 ## Checks
 
@@ -35,8 +37,16 @@ design/                 Design handoff (source of truth): spec, tokens.json, scr
 assets/                 App icon, splash, food and brand SVGs
 src/app/                Screens (Expo Router: every file is a route)
   _layout.tsx           Fonts + splash screen + navigation stack
-  index.tsx             Start route (phase 1: redirects to /dev)
+  index.tsx             01 Splash / Login
+  phone.tsx             Phone number + SMS code (mock)
+  profile.tsx           02 Profile picker (also "Modifier mes profils")
+  (tabs)/               Tab bar: home (03 Accueil), plan, orders, account
+  kitchen/[id].tsx      04 Kitchen page (sticky section tabs)
+  search.tsx, kitchens.tsx, notifications.tsx
+  dish/[id].tsx, compose.tsx   Placeholders until phase 3
   dev.tsx               Component gallery
+src/api/                Mock API: async functions over src/data (swap for the real backend later)
+src/store/              Zustand stores (user: auth, profiles, address, favorites)
 src/components/         Component library (DESIGN_SPEC §3) — import from "@/components"
 src/theme/              tokens.ts reads design/tokens.json; metrics.ts holds component sizes
 src/i18n/               UI strings (fr.ts) — every visible string lives here (Arabic/English later)
@@ -61,8 +71,8 @@ src/types/              Data model (DESIGN_SPEC §6)
 | Phase | Scope | Status |
 |---|---|---|
 | 1 | Theme from tokens, fonts, component library, `/dev` gallery | ✅ done |
-| 2 | Navigation; screens 01 Splash, 02 Profile picker, 03 Home, 04 Kitchen | next |
-| 3 | 05 Dish option sheet, 06 Compose (rules §7), cart store | |
+| 2 | Navigation; screens 01 Splash, 02 Profile picker, 03 Home, 04 Kitchen (+ phone login, search, address sheet) | ✅ done |
+| 3 | 05 Dish option sheet, 06 Compose (rules §7), cart store | next |
 | 4 | 07 Cart, 08 Payment (mock), 09 Tracking (mock timer), floating cart bar | |
 | 5 | 10 Ma semaine (plans), 11 Mon compte | |
 

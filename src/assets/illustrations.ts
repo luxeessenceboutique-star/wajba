@@ -3,9 +3,10 @@
  *
  * Each entry tells <FoodImage> how to crop the drawing so it looks like a
  * photo, not an icon: `scale` multiplies the size the slot asks for (the
- * tajine is tall, so it's drawn a bit smaller) and `offsetY` pushes the art
- * down as a fraction of the slot height (so the tajine base bleeds off the
- * bottom edge like in the designs).
+ * tajine is tall, so it's drawn a bit smaller); `align: "top"` pins the art
+ * to the top of the slot so the tajine's lid and steam show and its base
+ * bleeds off the bottom, as in the designs; `offsetY` is an extra shift as a
+ * fraction of the slot height.
  */
 import type { FC } from "react";
 import type { SvgProps } from "react-native-svg";
@@ -24,18 +25,19 @@ export type IllustrationKey = "tajine" | "couscous" | "bowl" | "brochettes" | "p
 export interface Illustration {
   Component: FC<SvgProps>;
   scale: number;
+  align: "center" | "top";
   offsetY: number;
 }
 
 export const illustrations: Record<IllustrationKey, Illustration> = {
-  tajine: { Component: Tajine, scale: 0.92, offsetY: 0.14 },
-  couscous: { Component: Couscous, scale: 1, offsetY: 0 },
-  bowl: { Component: Bowl, scale: 1, offsetY: 0 },
-  brochettes: { Component: Brochettes, scale: 1, offsetY: 0 },
-  pastilla: { Component: Pastilla, scale: 1, offsetY: 0 },
-  harira: { Component: Harira, scale: 1, offsetY: 0 },
-  msemen: { Component: Msemen, scale: 1, offsetY: 0 },
-  atay: { Component: Atay, scale: 0.88, offsetY: 0 },
+  tajine: { Component: Tajine, scale: 0.92, align: "top", offsetY: 0 },
+  couscous: { Component: Couscous, scale: 1, align: "center", offsetY: 0 },
+  bowl: { Component: Bowl, scale: 1, align: "center", offsetY: 0 },
+  brochettes: { Component: Brochettes, scale: 1, align: "center", offsetY: 0 },
+  pastilla: { Component: Pastilla, scale: 1, align: "center", offsetY: 0 },
+  harira: { Component: Harira, scale: 1, align: "center", offsetY: 0 },
+  msemen: { Component: Msemen, scale: 1, align: "center", offsetY: 0 },
+  atay: { Component: Atay, scale: 0.88, align: "center", offsetY: 0 },
 };
 
 export function isIllustrationKey(value: string): value is IllustrationKey {

@@ -38,7 +38,13 @@ export default function RootLayout() {
   return (
     <>
       <StatusBar style="dark" />
-      <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.background } }} />
+      {/* Navigation — DESIGN_SPEC §4. Splash → phone → profiles → tabs; kitchen, search… pushed on top. */}
+      <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.background } }}>
+        <Stack.Screen name="index" />
+        <Stack.Screen name="(tabs)" options={{ gestureEnabled: false }} />
+        <Stack.Screen name="dish/[id]" options={{ presentation: "modal" }} />
+        <Stack.Screen name="search" options={{ animation: "fade" }} />
+      </Stack>
     </>
   );
 }

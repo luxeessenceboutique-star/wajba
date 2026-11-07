@@ -34,6 +34,8 @@ export const spacing = raw.spacing;
 export const size = raw.size;
 export const shadows = {
   ...raw.shadow,
+  /** Header pinned over scrolling content (kitchen page). */
+  pinnedHeader: "0 4px 12px rgba(23,20,43,0.06)",
   /** Switch knob (not in tokens.json; subtle lift so the knob reads on grey). */
   knob: "0 1px 3px rgba(23,20,43,0.2)",
 };
@@ -142,6 +144,27 @@ const fromSpec = {
   initials: toTextStyle({ size: 14, weight: 800 }),
   /** Initials in the large 64 pt kitchen avatar (18/800). */
   initialsLarge: toTextStyle({ size: 18, weight: 800 }),
+  /** Kitchen section tabs (15/600, active 15/800). */
+  tab: toTextStyle({ size: 15, weight: 600 }),
+  tabActive: toTextStyle({ size: 15, weight: 800 }),
+  /** Info strip value (15/700) and small label (12/500). */
+  infoValue: toTextStyle({ size: 15, weight: 700 }),
+  small: toTextStyle({ size: 12, weight: 500 }),
+  /** Grid card price (15/700) and name (14/600, line-height 1.3). */
+  priceLarge: toTextStyle({ size: 15, weight: 700 }),
+  gridName: toTextStyle({ size: 14, weight: 600, lineHeight: 1.3 }),
+  /** Profile card name (16/800). */
+  profileName: toTextStyle({ size: 16, weight: 700 }),
+  /** Profile card perk (12.5/500, line-height 1.35). */
+  perk: toTextStyle({ size: 12.5, weight: 500, lineHeight: 1.35 }),
+  /** Legal line under login buttons (12.5/500, line-height 1.5). */
+  legal: toTextStyle({ size: 12.5, weight: 500, lineHeight: 1.5 }),
+  /** Big onboarding titles (30/800). */
+  onboardingTitle: toTextStyle({ size: 30, weight: 800, lineHeight: 1.1, letterSpacing: "-0.04em" }),
+  /** Splash tagline (17/600) and wordmark size. */
+  tagline: toTextStyle({ size: 17, weight: 600 }),
+  /** Phone number / code input (22/700). */
+  bigInput: toTextStyle({ size: 22, weight: 700, letterSpacing: "0.02em" }),
   /** Cart bar count and total (15/800). */
   cartCount: toTextStyle({ size: 15, weight: 800 }),
   /** Small pill badge on promo banners (11.5/800). */

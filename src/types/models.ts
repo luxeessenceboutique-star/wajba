@@ -36,6 +36,8 @@ export interface Kitchen {
   promo?: string;
   coverImage: string;
   coverTint: string;
+  /** Menu sections in display order (tabs on the kitchen page, after "Populaires"). */
+  sections: string[];
 }
 
 export interface Option {
@@ -136,6 +138,13 @@ export interface Plan {
   popular?: boolean;
 }
 
+export interface Address {
+  id: string;
+  label: string;
+  line: string;
+  city: string;
+}
+
 export interface User {
   id: string;
   name: string;
@@ -147,14 +156,18 @@ export interface User {
   dailyKcalGoal: number;
   dailyProteinGoal: number;
   preferences: { glutenFree: boolean; vegetarian: boolean; lactoseFree: boolean; allergies: string[] };
-  addresses: { id: string; label: string; line: string; city: string }[];
+  addresses: Address[];
 }
+
+/** Where a Home category bubble leads. */
+export type CategoryTarget = { kind: "kitchen"; kitchenId: string; section?: string } | { kind: "compose" };
 
 export interface Category {
   id: string;
   label: string;
   image: string;
   tint: string;
+  target: CategoryTarget;
 }
 
 export interface Promo {
@@ -164,6 +177,8 @@ export interface Promo {
   subtitle?: string;
   tone: "primary" | "saffron";
   image: string;
+  /** Screen opened by the banner, if any (e.g. the weekly plans tab). */
+  target?: "plan";
 }
 
 export interface HomeFilter {

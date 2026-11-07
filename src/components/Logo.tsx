@@ -24,10 +24,12 @@ export interface LogoProps {
   showArabic?: boolean;
   /** Show the pin mark before the wordmark. */
   showMark?: boolean;
+  /** Arabic text size relative to the wordmark (brand board 0.62, splash 0.45). */
+  arabicScale?: number;
   style?: StyleProp<ViewStyle>;
 }
 
-export function Logo({ size = 40, onBlue = false, showArabic = false, showMark = true, style }: LogoProps) {
+export function Logo({ size = 40, onBlue = false, showArabic = false, showMark = true, arabicScale = ARABIC_SCALE, style }: LogoProps) {
   const Mark = onBlue ? LogoMarkOnBlue : LogoMark;
   const markWidth = size * MARK_SCALE;
   return (
@@ -45,7 +47,7 @@ export function Logo({ size = 40, onBlue = false, showArabic = false, showMark =
         {t("brand.name")}
       </Text>
       {showArabic && (
-        <Text style={{ fontFamily: fontFamily.arabicLogo, fontSize: size * ARABIC_SCALE, color: colors.saffron }}>{t("brand.arabic")}</Text>
+        <Text style={{ fontFamily: fontFamily.arabicLogo, fontSize: size * arabicScale, color: colors.saffron }}>{t("brand.arabic")}</Text>
       )}
     </View>
   );
