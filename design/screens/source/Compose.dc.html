@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Compose ta wajba</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:#17142B}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:0;padding:0;color:inherit;background:none;text-align:left}
+</style>
+</helmet>
+<div style="width:390px;height:2040px;box-sizing:border-box;background:#FFFFFF;display:flex;flex-direction:column;overflow:hidden">
+
+  <div style="padding:52px 16px 0;display:flex;align-items:center;justify-content:space-between">
+    <a href="Home.dc.html" aria-label="Retour" style="width:44px;height:44px;border-radius:22px;background:#F4F3F7;display:flex;align-items:center;justify-content:center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></a>
+    <h1 style="margin:0;font-weight:800;font-size:18px;letter-spacing:-.02em">Compose ta wajba</h1>
+    <button onClick="{{ reset }}" style="min-height:44px;font-weight:700;font-size:14px;color:#2B33C6">Vider</button>
+  </div>
+
+  <div style="position:relative;flex:none;margin:14px 16px 0;height:156px;border-radius:22px;background:#E3F4EC;overflow:hidden">
+    <img src="../../assets/food/bowl.svg" alt="Aperçu de ton bowl" style="position:absolute;left:-44px;top:-22px;width:200px;height:200px">
+    <div style="position:absolute;left:168px;right:14px;top:16px;bottom:14px;display:flex;flex-direction:column;justify-content:space-between">
+      <div style="display:flex;align-items:baseline;gap:4px"><b style="font-size:36px;line-height:1;letter-spacing:-.04em">{{ kcal }}</b><span style="font-size:14px;font-weight:600;color:#3D3A4F">kcal</span></div>
+      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;font-size:12px;color:#3D3A4F">
+        <span style="display:flex;flex-direction:column"><b style="font-size:15px;color:#17142B">{{ p }}&nbsp;g</b>prot.</span>
+        <span style="display:flex;flex-direction:column"><b style="font-size:15px;color:#17142B">{{ c }}&nbsp;g</b>gluc.</span>
+        <span style="display:flex;flex-direction:column"><b style="font-size:15px;color:#17142B">{{ f }}&nbsp;g</b>lip.</span>
+      </div>
+      <span style="{{ goalStyle }}">{{ goalText }}</span>
+    </div>
+  </div>
+  <p style="margin:10px 16px 0;font-size:13px;line-height:1.45;color:#6B6880">{{ summary }}</p>
+
+  <div style="padding:0 16px;display:flex;flex-direction:column">
+    <sc-for list="{{ lists }}" as="g" hint-placeholder-count="2">
+      <section style="padding-top:22px;display:flex;flex-direction:column">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding-bottom:6px">
+          <div style="display:flex;flex-direction:column;gap:1px"><h2 style="margin:0;font-weight:800;font-size:17px;letter-spacing:-.02em">{{ g.title }}</h2><span style="font-size:13px;color:#6B6880">{{ g.sub }}</span></div>
+          <span style="flex:none;min-height:24px;padding:0 9px;border-radius:12px;background:#17142B;color:#FFFFFF;font-size:12px;font-weight:700;display:flex;align-items:center">Obligatoire</span>
+        </div>
+        <sc-for list="{{ g.rows }}" as="r" hint-placeholder-count="6">
+          <button onClick="{{ r.pick }}" aria-pressed="{{ r.pressed }}" style="width:100%;min-height:58px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #ECEAF1">
+            <span style="{{ r.dot }}"></span>
+            <span style="flex:1;display:flex;flex-direction:column"><span style="font-size:15px;font-weight:600">{{ r.name }}</span><span style="font-size:12.5px;color:#6B6880">{{ r.kcal }}</span></span>
+            <span style="font-size:14px;color:#6B6880">{{ r.price }}</span>
+            <span style="{{ r.ctrl }}"><sc-if value="{{ r.selected }}" hint-placeholder-val="{{ false }}"><span style="width:10px;height:10px;border-radius:5px;background:#FFFFFF"></span></sc-if></span>
+          </button>
+        </sc-for>
+      </section>
+    </sc-for>
+
+    <sc-for list="{{ chipGroups }}" as="g" hint-placeholder-count="3">
+      <section style="padding-top:22px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px">
+          <div style="display:flex;flex-direction:column;gap:1px"><h2 style="margin:0;font-weight:800;font-size:17px;letter-spacing:-.02em">{{ g.title }}</h2><span style="font-size:13px;color:#6B6880">{{ g.sub }}</span></div>
+          <span style="flex:none;min-height:24px;padding:0 9px;border-radius:12px;background:#F4F3F7;color:#3D3A4F;font-size:12px;font-weight:700;display:flex;align-items:center">{{ g.badge }}</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <sc-for list="{{ g.chips }}" as="o" hint-placeholder-count="5">
+            <button onClick="{{ o.pick }}" aria-pressed="{{ o.pressed }}" style="{{ o.style }}"><span style="{{ o.dot }}"></span>{{ o.label }}</button>
+          </sc-for>
+        </div>
+      </section>
+    </sc-for>
+  </div>
+
+  <div style="margin-top:auto;box-sizing:border-box;padding:14px 16px 32px;background:#FFFFFF;border-top:1px solid #ECEAF1;display:flex;align-items:center;gap:14px">
+    <div style="display:flex;flex-direction:column"><span style="font-size:12.5px;color:#6B6880">Total</span><b style="font-size:22px;letter-spacing:-.02em">{{ price }}&nbsp;DH</b></div>
+    <a href="Cart.dc.html" style="flex:1;min-height:54px;border-radius:27px;background:#2B33C6;color:#FFFFFF;font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center">Ajouter au panier</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":2040}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { base: 'quinoa', prot: 'poulet', veg: { zaalouk: true, avocat: true, pois: true }, sauce: 'chermoula', ext: {} };
+  }
+  renderVals() {
+    const st = this.state;
+    const BASES = [
+      { id: 'couscous', name: 'Couscous', k: 360, p: 12, c: 70, f: 4, add: 0, col: '#E8C068' },
+      { id: 'riz', name: 'Riz au safran', k: 330, p: 6, c: 72, f: 2, add: 0, col: '#F6B52E' },
+      { id: 'quinoa', name: 'Quinoa', k: 300, p: 11, c: 54, f: 5, add: 0, col: '#D3B67C' },
+      { id: 'salade', name: 'Salade verte', k: 60, p: 3, c: 10, f: 1, add: 0, col: '#7DBB55' },
+      { id: 'msemen', name: 'Msemen', k: 320, p: 7, c: 46, f: 12, add: 4, col: '#E3A74C' },
+      { id: 'patate', name: 'Patate douce', k: 240, p: 4, c: 54, f: 1, add: 4, col: '#E8762C' }
+    ];
+    const PROTS = [
+      { id: 'poulet', name: 'Poulet chermoula', k: 220, p: 32, c: 2, f: 9, add: 0, col: '#E9B377' },
+      { id: 'kefta', name: 'Kefta épicée', k: 290, p: 24, c: 4, f: 20, add: 6, col: '#8A4B2A' },
+      { id: 'poisson', name: 'Poisson grillé', k: 210, p: 30, c: 0, f: 9, add: 10, col: '#AFC0D6' },
+      { id: 'falafel', name: 'Falafel', k: 260, p: 11, c: 28, f: 12, add: 0, col: '#9C7A3A' },
+      { id: 'oeufs', name: 'Œufs bio', k: 150, p: 12, c: 1, f: 10, add: 0, col: '#FFE58A' },
+      { id: 'double', name: 'Double poulet', k: 440, p: 64, c: 4, f: 18, add: 14, col: '#D89A5E' }
+    ];
+    const VEGS = [
+      { id: 'zaalouk', name: 'Zaalouk', k: 70, p: 1, c: 6, f: 5, add: 0, col: '#6B2F55' },
+      { id: 'taktouka', name: 'Taktouka', k: 60, p: 1, c: 7, f: 3, add: 0, col: '#D23A24' },
+      { id: 'carottes', name: 'Carottes au cumin', k: 50, p: 1, c: 10, f: 1, add: 0, col: '#E8762C' },
+      { id: 'tomate', name: 'Tomate-concombre', k: 25, p: 1, c: 5, f: 0, add: 0, col: '#6FAE4A' },
+      { id: 'avocat', name: 'Avocat', k: 120, p: 1, c: 6, f: 11, add: 8, col: '#9DC65A' },
+      { id: 'pois', name: 'Pois chiches', k: 110, p: 6, c: 18, f: 2, add: 0, col: '#EDCF95' },
+      { id: 'olives', name: 'Olives', k: 60, p: 0, c: 2, f: 6, add: 0, col: '#4A4A2A' },
+      { id: 'betterave', name: 'Betterave', k: 40, p: 1, c: 9, f: 0, add: 0, col: '#9A1F4A' }
+    ];
+    const SAUCES = [
+      { id: 'harissa', name: 'Harissa', k: 20, p: 1, c: 3, f: 1, add: 0, col: '#B8281A' },
+      { id: 'chermoula', name: 'Chermoula', k: 60, p: 0, c: 2, f: 6, add: 0, col: '#2F7A3A' },
+      { id: 'tahini', name: 'Tahini', k: 90, p: 3, c: 3, f: 8, add: 0, col: '#E8D6B0' },
+      { id: 'yaourt', name: 'Yaourt menthe', k: 35, p: 2, c: 3, f: 2, add: 0, col: '#DDEFE3' },
+      { id: 'none', name: 'Sans sauce', k: 0, p: 0, c: 0, f: 0, add: 0, col: '#FFFFFF' }
+    ];
+    const EXTRAS = [
+      { id: 'atay', name: 'Atay na3na3', k: 80, p: 0, c: 20, f: 0, add: 12, col: '#0E8A5F' },
+      { id: 'jus', name: 'Jus d’orange', k: 110, p: 2, c: 26, f: 0, add: 15, col: '#F59A2C' },
+      { id: 'chebakia', name: 'Chebakia', k: 180, p: 2, c: 24, f: 9, add: 10, col: '#B8681E' },
+      { id: 'amlou', name: 'Amlou & pain', k: 210, p: 5, c: 14, f: 15, add: 9, col: '#8A4B2A' }
+    ];
+    const chosen = [];
+    const b = BASES.find((x) => x.id === st.base); if (b) chosen.push(b);
+    const pr = PROTS.find((x) => x.id === st.prot); if (pr) chosen.push(pr);
+    const vs = VEGS.filter((x) => st.veg[x.id]); vs.forEach((x) => chosen.push(x));
+    const sa = SAUCES.find((x) => x.id === st.sauce); if (sa) chosen.push(sa);
+    EXTRAS.filter((x) => st.ext[x.id]).forEach((x) => chosen.push(x));
+    const sum = (key) => chosen.reduce((a, x) => a + x[key], 0);
+    const kcal = sum('k');
+    const price = (chosen.length ? 45 : 0) + sum('add');
+    const dot = (col, n) => 'width:' + n + 'px;height:' + n + 'px;flex:none;border-radius:' + (n / 2) + 'px;background:' + col + ';box-shadow:inset 0 0 0 1px rgba(23,20,43,.12)';
+    const row = (x, sel, pick) => ({
+      name: x.name, kcal: x.k + ' kcal', price: x.add ? '+' + x.add + ' DH' : '', selected: sel, pressed: sel ? 'true' : 'false', pick,
+      dot: dot(x.col, 30),
+      ctrl: 'width:24px;height:24px;flex:none;border-radius:12px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;' + (sel ? 'background:#2B33C6' : 'border:2px solid #CFCCD9')
+    });
+    const chip = (x, sel, pick) => ({
+      label: x.name + (x.add ? ' +' + x.add + ' DH' : ''), pressed: sel ? 'true' : 'false', pick,
+      style: 'min-height:44px;padding:0 14px 0 8px;border-radius:22px;box-sizing:border-box;display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;' + (sel ? 'background:#2B33C6;color:#FFFFFF;border:1.5px solid #2B33C6' : 'background:#FFFFFF;color:#17142B;border:1.5px solid #DDDAE5'),
+      dot: dot(x.col, 24)
+    });
+    const ok = kcal <= 900;
+    return {
+      kcal, p: sum('p'), c: sum('c'), f: sum('f'), price,
+      goalText: ok ? 'Dans ton objectif' : 'Au-dessus de 900 kcal',
+      goalStyle: 'align-self:flex-start;min-height:24px;padding:0 9px;border-radius:12px;font-size:12px;font-weight:700;display:flex;align-items:center;' + (ok ? 'background:#FFFFFF;color:#0B6B49' : 'background:#FBE7DF;color:#8E3415'),
+      summary: chosen.length ? chosen.map((x) => x.name).join(' · ') : 'Choisis ta base pour commencer.',
+      lists: [
+        { title: '1. La base', sub: 'Choisis 1', rows: BASES.map((x) => row(x, st.base === x.id, () => this.setState({ base: x.id }))) },
+        { title: '2. La protéine', sub: 'Choisis 1', rows: PROTS.map((x) => row(x, st.prot === x.id, () => this.setState({ prot: x.id }))) }
+      ],
+      chipGroups: [
+        { title: '3. Les légumes', sub: vs.length + ' sur 4', badge: 'Jusqu’à 4', chips: VEGS.map((x) => chip(x, !!st.veg[x.id], () => { const on = !!st.veg[x.id]; if (!on && vs.length >= 4) return; this.setState({ veg: { ...st.veg, [x.id]: !on } }); })) },
+        { title: '4. La sauce', sub: 'Choisis 1', badge: 'Obligatoire', chips: SAUCES.map((x) => chip(x, st.sauce === x.id, () => this.setState({ sauce: x.id }))) },
+        { title: '5. Le petit plus', sub: 'Boisson ou douceur', badge: 'Optionnel', chips: EXTRAS.map((x) => chip(x, !!st.ext[x.id], () => this.setState({ ext: { ...st.ext, [x.id]: !st.ext[x.id] } }))) }
+      ],
+      reset: () => this.setState({ base: null, prot: null, veg: {}, sauce: null, ext: {} })
+    };
+  }
+}
+</script>
+</body>
+</html>

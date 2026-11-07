@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" width="320" height="320">
+<defs>
+<radialGradient id="sh" cx=".5" cy=".5" r=".5"><stop offset=".75" stop-color="#17142B" stop-opacity=".26"/><stop offset="1" stop-color="#17142B" stop-opacity="0"/></radialGradient>
+<linearGradient id="ms" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F8D486"/><stop offset=".55" stop-color="#E3A74C"/><stop offset="1" stop-color="#C2802E"/></linearGradient>
+<linearGradient id="hn" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F8C23C"/><stop offset="1" stop-color="#D9861A"/></linearGradient>
+</defs>
+<circle cx="168" cy="172" r="150" fill="url(#sh)"/>
+<g transform="rotate(16 160 160)"><rect x="68" y="68" width="186" height="186" rx="18" fill="#B87628"/><rect x="70" y="70" width="182" height="182" rx="17" fill="url(#ms)" opacity=".85"/></g>
+<g transform="rotate(4 160 160)"><rect x="64" y="64" width="192" height="192" rx="18" fill="#C4842E"/></g>
+<g transform="rotate(-8 160 160)">
+<rect x="62" y="62" width="196" height="196" rx="18" fill="url(#ms)" stroke="#B87628" stroke-width="2"/>
+<rect x="92" y="92" width="136" height="136" rx="10" fill="none" stroke="#C4842E" stroke-width="2" opacity=".7"/>
+<path d="M62 160H92M228 160H258M160 62V92M160 228V258" stroke="#C4842E" stroke-width="2" opacity=".5"/>
+<g fill="#B8681E" opacity=".45"><ellipse cx="110" cy="100" rx="14" ry="6"/><ellipse cx="200" cy="130" rx="18" ry="7"/><ellipse cx="140" cy="214" rx="16" ry="6"/><ellipse cx="226" cy="214" rx="10" ry="5"/><ellipse cx="88" cy="180" rx="8" ry="12"/><ellipse cx="236" cy="84" rx="9" ry="5"/></g>
+<g fill="#FCE3A8" opacity=".65"><ellipse cx="130" cy="120" rx="12" ry="4"/><ellipse cx="190" cy="196" rx="14" ry="4"/><ellipse cx="216" cy="100" rx="8" ry="3"/></g>
+</g>
+<path d="M80 120C112 96 132 152 160 128S214 104 240 140S206 214 170 196S108 214 92 188" fill="none" stroke="url(#hn)" stroke-width="8" stroke-linecap="round" opacity=".95"/>
+<path d="M84 117C112 98 130 146 158 125" fill="none" stroke="#FFE08A" stroke-width="2.5" stroke-linecap="round" opacity=".9"/>
+<g transform="rotate(-12 166 160)"><rect x="148" y="146" width="36" height="28" rx="6" fill="#FFF1B8"/><rect x="152" y="149" width="14" height="5" rx="2.5" fill="#FFFFFF" opacity=".8"/></g>
+</svg>

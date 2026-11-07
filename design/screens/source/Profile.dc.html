@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Pour qui on cuisine</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:#17142B}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;padding:0;color:inherit;text-align:left}
+</style>
+</helmet>
+<div style="width:390px;height:920px;box-sizing:border-box;background:#FFFFFF;display:flex;flex-direction:column;padding:56px 16px 32px;gap:20px">
+
+  <div style="display:flex;align-items:center;gap:14px">
+    <a href="Splash.dc.html" aria-label="Retour" style="width:44px;height:44px;flex:none;border-radius:22px;background:#F4F3F7;display:flex;align-items:center;justify-content:center">
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></a>
+    <div style="flex:1;height:6px;border-radius:3px;background:#ECEAF1" aria-label="Étape 2 sur 3"><div style="width:66%;height:6px;border-radius:3px;background:#2B33C6"></div></div>
+    <a href="Home.dc.html" style="min-height:44px;display:flex;align-items:center;font-weight:700;font-size:15px;color:#2B33C6">Passer</a>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:8px">
+    <h1 style="margin:0;font-weight:800;font-size:30px;line-height:1.1;letter-spacing:-.04em">Pour qui on cuisine ?</h1>
+    <p style="margin:0;font-size:15px;line-height:1.5;color:#6B6880">Choisis un ou plusieurs profils. On adapte le menu, les prix et les horaires.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px">
+    <sc-for list="{{ profiles }}" as="p" hint-placeholder-count="6">
+      <button onClick="{{ p.pick }}" aria-pressed="{{ p.pressed }}" style="{{ p.style }}">
+        <span style="{{ p.circle }}"><img src="{{ p.img }}" alt="" style="width:66px;height:66px"></span>
+        <span style="display:flex;flex-direction:column;gap:2px"><b style="font-size:16px">{{ p.label }}</b><span style="font-size:12.5px;line-height:1.35;color:#6B6880">{{ p.perk }}</span></span>
+        <span style="{{ p.check }}"><sc-if value="{{ p.selected }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></sc-if></span>
+      </button>
+    </sc-for>
+  </div>
+
+  <a href="Home.dc.html" style="margin-top:auto;min-height:54px;border-radius:27px;background:#2B33C6;color:#FFFFFF;font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center">{{ cta }}</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":920}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { picked: { job: true, sport: true } }; }
+  renderVals() {
+    const st = this.state;
+    const defs = [
+      { id: 'job', label: 'Employé·e', perk: 'Livré au bureau, 12h–14h', img: '../../assets/food/tajine.svg', tint: '#FFF1D6' },
+      { id: 'etu', label: 'Étudiant·e', perk: '−15 % avec ta carte', img: '../../assets/food/msemen.svg', tint: '#E8EAFD' },
+      { id: 'sport', label: 'Sportif·ve', perk: 'Calories et protéines', img: '../../assets/food/bowl.svg', tint: '#E3F4EC' },
+      { id: 'fam', label: 'Famille', perk: 'Plats pour 4 à 6', img: '../../assets/food/couscous.svg', tint: '#FBE7DF' },
+      { id: 'heal', label: 'Healthy', perk: 'Moins de 500 kcal', img: '../../assets/food/harira.svg', tint: '#E3F4EC' },
+      { id: 'ftour', label: 'Ftour & Shour', perk: 'Livré avant l’adhan', img: '../../assets/food/atay.svg', tint: '#FFF1D6' }
+    ];
+    const n = defs.filter((d) => st.picked[d.id]).length;
+    return {
+      cta: n ? 'Continuer (' + n + ')' : 'Continuer',
+      profiles: defs.map((d) => {
+        const sel = !!st.picked[d.id];
+        return {
+          label: d.label, perk: d.perk, img: d.img, selected: sel, pressed: sel ? 'true' : 'false',
+          pick: () => this.setState({ picked: { ...st.picked, [d.id]: !sel } }),
+          style: 'position:relative;width:100%;min-height:150px;box-sizing:border-box;border-radius:20px;padding:14px;display:flex;flex-direction:column;gap:10px;' + (sel ? 'background:#F3F4FE;border:2px solid #2B33C6' : 'background:#FFFFFF;border:1.5px solid #ECEAF1'),
+          circle: 'width:72px;height:72px;border-radius:36px;background:' + d.tint + ';display:flex;align-items:center;justify-content:center;overflow:hidden',
+          check: 'position:absolute;top:12px;right:12px;width:24px;height:24px;border-radius:12px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;' + (sel ? 'background:#2B33C6' : 'border:2px solid #DDDAE5')
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

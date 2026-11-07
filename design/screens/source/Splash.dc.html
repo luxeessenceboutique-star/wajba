@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Connexion Wajba</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Reem+Kufi:wght@700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:#17142B}
+a{text-decoration:none;color:inherit}
+</style>
+</helmet>
+<div style="position:relative;width:390px;height:844px;box-sizing:border-box;background:#2B33C6;overflow:hidden">
+
+  <img src="../../assets/food/couscous.svg" alt="" style="position:absolute;right:-56px;top:58px;width:170px;height:170px">
+  <img src="../../assets/food/bowl.svg" alt="" style="position:absolute;left:-62px;top:292px;width:190px;height:190px">
+  <img src="../../assets/food/msemen.svg" alt="" style="position:absolute;right:-30px;top:330px;width:120px;height:120px">
+
+  <div style="position:absolute;left:0;right:0;top:130px;display:flex;flex-direction:column;align-items:center;gap:16px;color:#FFFFFF">
+    <svg role="img" aria-label="Logo Wajba" width="84" height="105" viewBox="0 0 120 150">
+      <path d="M60 146C46 128 14 98 14 62A46 46 0 0 1 106 62C106 98 74 128 60 146Z" fill="#FFFFFF"/>
+      <path d="M37.5 96V65A26 26 0 1 1 82.5 65V96Z" fill="#F6B52E"/>
+      <g fill="#2B33C6"><rect x="41" y="86" width="38" height="5" rx="2.5"/><path d="M44 91h32l-3 5H47z"/><path d="M45 86C53 81 57 69 58.5 56h3C63 69 67 81 75 86Z"/><circle cx="60" cy="52" r="4.2"/><path d="M55.5 33.5h9v9h-9z"/><path d="M60 31.6L66.4 38L60 44.4L53.6 38Z"/></g>
+    </svg>
+    <div style="display:flex;align-items:baseline;gap:10px">
+      <span style="font-weight:800;font-size:58px;line-height:.9;letter-spacing:-.06em">wajba</span>
+      <span style="font-family:'Reem Kufi',sans-serif;font-weight:700;font-size:26px;color:#F6B52E">وجبة</span>
+    </div>
+    <span style="font-weight:600;font-size:17px;opacity:.92">Lmakla dyal dar, livrée en 30 min.</span>
+  </div>
+
+  <div style="position:absolute;left:0;right:0;bottom:0;background:#FFFFFF;border-radius:28px 28px 0 0;padding:28px 20px 34px;display:flex;flex-direction:column;gap:18px">
+    <h1 style="margin:0;font-weight:800;font-size:24px;line-height:1.2;letter-spacing:-.03em">Ahlan ! On te livre<br>quoi aujourd'hui ?</h1>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <a href="Profile.dc.html" style="min-height:54px;border-radius:27px;background:#2B33C6;color:#FFFFFF;font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center;gap:10px">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zM11 18h2"/></svg>Continuer avec mon numéro</a>
+      <a href="Profile.dc.html" style="min-height:54px;border-radius:27px;border:1.5px solid #DDDAE5;box-sizing:border-box;font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center;gap:10px">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="#17142B" stroke-width="2"/><path d="M12 12h6" stroke="#17142B" stroke-width="2" stroke-linecap="round"/></svg>Continuer avec Google</a>
+      <a href="Profile.dc.html" style="min-height:54px;border-radius:27px;background:#17142B;color:#FFFFFF;font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center;gap:10px">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3c-1.5.2-3 1.4-3 3.2M12 8c-2-1-6-.5-6 5 0 4 2.5 8 4.5 8 1 0 1.5-.6 2.5-.6s1.5.6 2.5.6c1.6 0 3.2-2.4 3.8-4.6-1.8-.8-2.8-2.4-2.6-4.4.1-1.4 1-2.6 2.2-3.2C17.6 7 14.5 7 12 8z"/></svg>Continuer avec Apple</a>
+    </div>
+    <p style="margin:0;font-size:12.5px;line-height:1.5;color:#6B6880;text-align:center">En continuant, tu acceptes nos <a href="Splash.dc.html" style="color:#17142B;font-weight:700;text-decoration:underline">Conditions</a> et notre <a href="Splash.dc.html" style="color:#17142B;font-weight:700;text-decoration:underline">Politique de confidentialité</a>.</p>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

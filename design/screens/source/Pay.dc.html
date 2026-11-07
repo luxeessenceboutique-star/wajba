@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Paiement</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:#17142B}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:0;padding:0;color:inherit;background:none;text-align:left}
+input{font-family:inherit}
+</style>
+</helmet>
+<div style="width:390px;height:1260px;box-sizing:border-box;background:#FFFFFF;display:flex;flex-direction:column;overflow:hidden">
+
+  <div style="padding:52px 16px 0;display:flex;align-items:center;justify-content:space-between">
+    <a href="Cart.dc.html" aria-label="Retour" style="width:44px;height:44px;border-radius:22px;background:#F4F3F7;display:flex;align-items:center;justify-content:center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></a>
+    <h1 style="margin:0;font-weight:800;font-size:18px;letter-spacing:-.02em">Paiement</h1>
+    <span aria-label="Sécurisé" style="width:44px;height:44px;border-radius:22px;background:#E3F4EC;display:flex;align-items:center;justify-content:center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0E8A5F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>
+  </div>
+
+  <section style="padding:18px 16px 0;display:flex;flex-direction:column;gap:10px">
+    <h2 style="margin:0;font-weight:800;font-size:17px;letter-spacing:-.02em">Livraison</h2>
+    <div style="border-radius:18px;border:1px solid #ECEAF1;overflow:hidden">
+      <svg role="img" aria-label="Carte de l'adresse de livraison" width="358" height="92" viewBox="0 0 358 92" style="display:block"><rect width="358" height="92" fill="#EEF0F6"/><g fill="#E1E4EE"><rect x="0" y="0" width="110" height="34" rx="8"/><rect x="132" y="0" width="90" height="34" rx="8"/><rect x="244" y="0" width="114" height="34" rx="8"/><rect x="0" y="56" width="110" height="36" rx="8"/><rect x="244" y="56" width="114" height="36" rx="8"/></g><rect x="132" y="56" width="90" height="36" rx="8" fill="#D7EEDF"/><path d="M0 45H358M121 0V92M233 0V92" stroke="#FFFFFF" stroke-width="10"/><g transform="translate(177 42)"><circle r="16" fill="#2B33C6" fill-opacity=".18"/><circle r="8" fill="#2B33C6" stroke="#FFFFFF" stroke-width="3"/></g></svg>
+      <div style="padding:12px 14px;display:flex;align-items:center;gap:12px">
+        <div style="flex:1;display:flex;flex-direction:column"><b style="font-size:15px">Bureau</b><span style="font-size:13px;color:#6B6880">Bd Zerktouni, 3e étage, bureau 302</span></div>
+        <button style="min-height:40px;font-weight:700;font-size:14px;color:#2B33C6">Modifier</button>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
+      <sc-for list="{{ whens }}" as="w" hint-placeholder-count="2">
+        <button onClick="{{ w.pick }}" aria-pressed="{{ w.pressed }}" style="{{ w.style }}"><b style="font-size:14.5px">{{ w.label }}</b><span style="font-size:12.5px;color:#6B6880">{{ w.sub }}</span></button>
+      </sc-for>
+    </div>
+    <label style="min-height:50px;border-radius:14px;background:#F4F3F7;display:flex;align-items:center;gap:10px;padding:0 14px">
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6B6880" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.7 7L4 20l1.1-4.6A8 8 0 1 1 21 12z"/></svg>
+      <input type="text" placeholder="Note pour le livreur" aria-label="Note pour le livreur" style="flex:1;min-width:0;border:0;background:transparent;font-size:15px;color:#17142B;outline:none">
+    </label>
+  </section>
+
+  <section style="padding:22px 16px 0;display:flex;flex-direction:column">
+    <h2 style="margin:0 0 4px;font-weight:800;font-size:17px;letter-spacing:-.02em">Moyen de paiement</h2>
+    <sc-for list="{{ methods }}" as="m" hint-placeholder-count="4">
+      <button onClick="{{ m.pick }}" aria-pressed="{{ m.pressed }}" style="width:100%;min-height:62px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #ECEAF1">
+        <span style="{{ m.iconStyle }}"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{ m.icon }}"/></svg></span>
+        <span style="flex:1;display:flex;flex-direction:column"><b style="font-size:15px">{{ m.label }}</b><span style="font-size:12.5px;color:#6B6880">{{ m.sub }}</span></span>
+        <span style="{{ m.radio }}"><sc-if value="{{ m.selected }}" hint-placeholder-val="{{ false }}"><span style="width:10px;height:10px;border-radius:5px;background:#FFFFFF"></span></sc-if></span>
+      </button>
+    </sc-for>
+    <button style="min-height:52px;display:flex;align-items:center;gap:10px;font-weight:700;font-size:14.5px;color:#2B33C6"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Ajouter une carte</button>
+  </section>
+
+  <section style="padding:14px 16px 0;display:flex;flex-direction:column;gap:10px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="margin:0;font-weight:800;font-size:17px;letter-spacing:-.02em">Pourboire</h2><span style="font-size:12.5px;color:#6B6880">100 % pour le livreur</span></div>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px">
+      <sc-for list="{{ tips }}" as="t" hint-placeholder-count="4">
+        <button onClick="{{ t.pick }}" aria-pressed="{{ t.pressed }}" style="{{ t.style }}">{{ t.label }}</button>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="margin:20px 16px 0;padding:16px;border-radius:18px;background:#F4F3F7;display:flex;flex-direction:column;gap:8px;font-size:14.5px">
+    <div style="display:flex;justify-content:space-between"><span style="color:#6B6880">Commande</span><span>155 DH</span></div>
+    <div style="display:flex;justify-content:space-between"><span style="color:#6B6880">Pourboire</span><span>{{ tip }}&nbsp;DH</span></div>
+    <div style="height:1px;background:#DDDAE5;margin:4px 0"></div>
+    <div style="display:flex;justify-content:space-between;font-size:18px"><b>Total</b><b>{{ total }}&nbsp;DH</b></div>
+  </section>
+
+  <div style="margin-top:auto;box-sizing:border-box;padding:14px 16px 30px;border-top:1px solid #ECEAF1;display:flex;flex-direction:column;gap:8px">
+    <a href="Track.dc.html" style="min-height:54px;border-radius:27px;background:#2B33C6;color:#FFFFFF;font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center">{{ cta }}</a>
+    <span style="text-align:center;font-size:12px;color:#6B6880">Paiement sécurisé · 3D Secure · CMI</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1260}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { method: 'card', tip: 10, when: 'std' }; }
+  renderVals() {
+    const st = this.state;
+    const defs = [
+      { id: 'card', label: 'Visa •• 4821', sub: 'Expire 09/28', icon: 'M3 6h18v12H3zM3 10h18M7 15h4' },
+      { id: 'mobile', label: 'Apple Pay', sub: 'Face ID ou empreinte', icon: 'M8 2h8a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zM11 18h2' },
+      { id: 'wallet', label: 'Wajba Wallet', sub: 'Solde : 120 DH', icon: 'M3 7a2 2 0 0 1 2-2h13v4M3 7v11a2 2 0 0 0 2 2h14V9H5a2 2 0 0 1-2-2zM16 14h2' },
+      { id: 'cash', label: 'Espèces', sub: 'À la livraison', icon: 'M3 7h18v10H3zM12 9.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z' }
+    ];
+    const total = 155 + st.tip;
+    return {
+      tip: st.tip, total,
+      cta: st.method === 'cash' ? 'Confirmer · ' + total + ' DH à la livraison' : 'Payer ' + total + ' DH',
+      whens: [{ id: 'std', label: 'Standard', sub: '25–35 min' }, { id: 'later', label: 'Programmée', sub: 'Aujourd’hui 13:00' }].map((w) => ({
+        label: w.label, sub: w.sub, pressed: st.when === w.id ? 'true' : 'false', pick: () => this.setState({ when: w.id }),
+        style: 'width:100%;min-height:62px;border-radius:14px;box-sizing:border-box;padding:0 14px;display:flex;flex-direction:column;justify-content:center;gap:2px;' + (st.when === w.id ? 'border:2px solid #2B33C6;background:#F3F4FE' : 'border:1.5px solid #ECEAF1')
+      })),
+      methods: defs.map((d) => {
+        const sel = st.method === d.id;
+        return {
+          ...d, selected: sel, pressed: sel ? 'true' : 'false', pick: () => this.setState({ method: d.id }),
+          iconStyle: 'width:40px;height:40px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#F4F3F7',
+          radio: 'width:24px;height:24px;flex:none;border-radius:12px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;' + (sel ? 'background:#2B33C6' : 'border:2px solid #CFCCD9')
+        };
+      }),
+      tips: [0, 5, 10, 15].map((v) => ({
+        label: v === 0 ? 'Non' : v + ' DH', pressed: st.tip === v ? 'true' : 'false', pick: () => this.setState({ tip: v }),
+        style: 'min-height:44px;border-radius:22px;box-sizing:border-box;font-weight:700;font-size:14px;text-align:center;' + (st.tip === v ? 'background:#17142B;color:#FFFFFF' : 'background:#F4F3F7')
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

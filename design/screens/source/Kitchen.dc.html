@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Dar Wajba</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:#17142B}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:0;padding:0;color:inherit;background:none}
+</style>
+</helmet>
+<div style="width:390px;height:2060px;box-sizing:border-box;background:#FFFFFF;display:flex;flex-direction:column;overflow:hidden">
+
+  <div style="position:relative;height:220px;flex:none;background:#FBE7DF;overflow:hidden;display:flex;justify-content:center">
+    <img src="../../assets/food/tajine.svg" alt="Tajine de Dar Wajba" style="width:300px;height:300px;margin-top:24px">
+    <div style="position:absolute;top:52px;left:16px;right:16px;display:flex;justify-content:space-between">
+      <a href="Home.dc.html" aria-label="Retour" style="width:40px;height:40px;border-radius:20px;background:#FFFFFF;display:flex;align-items:center;justify-content:center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></a>
+      <div style="display:flex;gap:8px">
+        <button aria-label="Rechercher dans le menu" style="width:40px;height:40px;border-radius:20px;background:#FFFFFF;display:flex;align-items:center;justify-content:center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
+        <button aria-label="Favori" style="width:40px;height:40px;border-radius:20px;background:#FFFFFF;display:flex;align-items:center;justify-content:center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:0 16px;display:flex;flex-direction:column;gap:16px">
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <span style="margin-top:-32px;width:64px;height:64px;border-radius:32px;background:#C04A22;border:4px solid #FFFFFF;box-sizing:border-box;color:#FFFFFF;font-weight:800;font-size:18px;display:flex;align-items:center;justify-content:center">DW</span>
+      <h1 style="margin:4px 0 0;font-weight:800;font-size:27px;letter-spacing:-.04em">Dar Wajba</h1>
+      <span style="font-size:14px;color:#6B6880">Tajines, couscous &amp; plats de dar · Halal</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid #ECEAF1;border-radius:16px">
+      <div style="padding:10px 4px;display:flex;flex-direction:column;align-items:center;gap:1px;border-right:1px solid #ECEAF1"><b style="font-size:15px;display:flex;align-items:center;gap:4px"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="#F6B52E"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>4,8</b><span style="font-size:12px;color:#6B6880">2,1k avis</span></div>
+      <div style="padding:10px 4px;display:flex;flex-direction:column;align-items:center;gap:1px;border-right:1px solid #ECEAF1"><b style="font-size:15px">25–35 min</b><span style="font-size:12px;color:#6B6880">Livraison</span></div>
+      <div style="padding:10px 4px;display:flex;flex-direction:column;align-items:center;gap:1px"><b style="font-size:15px;color:#0E8A5F">Gratuite</b><span style="font-size:12px;color:#6B6880">dès 150 DH</span></div>
+    </div>
+    <div style="min-height:48px;border-radius:14px;background:#FFF1D6;padding:0 14px;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600">
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C04A22" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12V5a2 2 0 0 1 2-2h7l9 9-9 9z"/><circle cx="8" cy="8" r="1.6"/></svg>
+      −15 % sur les tajines jusqu'à 15h
+    </div>
+  </div>
+
+  <nav aria-label="Sections du menu" style="margin-top:14px;padding-left:16px;display:flex;gap:22px;border-bottom:1px solid #ECEAF1;overflow:hidden">
+    <a href="#populaires" style="flex:none;min-height:48px;display:flex;align-items:center;font-size:15px;font-weight:800;color:#2B33C6;box-shadow:inset 0 -3px 0 #2B33C6">Populaires</a>
+    <a href="#tajines" style="flex:none;min-height:48px;display:flex;align-items:center;font-size:15px;font-weight:600;color:#6B6880">Tajines</a>
+    <a href="#couscous" style="flex:none;min-height:48px;display:flex;align-items:center;font-size:15px;font-weight:600;color:#6B6880">Couscous</a>
+    <a href="#tajines" style="flex:none;min-height:48px;display:flex;align-items:center;font-size:15px;font-weight:600;color:#6B6880">Pastillas</a>
+    <a href="#boissons" style="flex:none;min-height:48px;display:flex;align-items:center;font-size:15px;font-weight:600;color:#6B6880">Boissons</a>
+  </nav>
+
+  <section id="populaires" style="padding:20px 16px 0;display:flex;flex-direction:column;gap:12px">
+    <h2 style="margin:0;font-weight:800;font-size:20px;letter-spacing:-.03em">Populaires</h2>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+      <a href="Dish.dc.html" style="display:flex;flex-direction:column;gap:6px">
+        <div style="position:relative;height:140px;border-radius:16px;background:#FBE7DF;overflow:hidden;display:flex;justify-content:center"><img src="../../assets/food/tajine.svg" alt="" style="width:190px;height:190px;margin-top:4px"><span aria-hidden="true" style="position:absolute;right:8px;bottom:8px;width:36px;height:36px;border-radius:18px;background:#FFFFFF;color:#2B33C6;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(23,20,43,.15)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></div>
+        <span style="display:flex;gap:6px;align-items:baseline"><b style="font-size:15px">55 DH</b><s style="font-size:13px;color:#8B8799">65 DH</s></span>
+        <span style="font-size:14px;font-weight:600;line-height:1.3">Tajine kefta &amp; œufs</span>
+        <span style="font-size:12.5px;color:#6B6880">640 kcal</span>
+      </a>
+      <a href="Dish.dc.html" style="display:flex;flex-direction:column;gap:6px">
+        <div style="position:relative;height:140px;border-radius:16px;background:#E8EAFD;overflow:hidden;display:flex;align-items:center;justify-content:center"><img src="../../assets/food/couscous.svg" alt="" style="width:200px;height:200px"><span aria-hidden="true" style="position:absolute;right:8px;bottom:8px;width:36px;height:36px;border-radius:18px;background:#FFFFFF;color:#2B33C6;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(23,20,43,.15)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></div>
+        <b style="font-size:15px">65 DH</b>
+        <span style="font-size:14px;font-weight:600;line-height:1.3">Couscous 7 khodar</span>
+        <span style="font-size:12.5px;color:#6B6880">690 kcal · le vendredi</span>
+      </a>
+      <a href="Dish.dc.html" style="display:flex;flex-direction:column;gap:6px">
+        <div style="position:relative;height:140px;border-radius:16px;background:#FFF1D6;overflow:hidden;display:flex;align-items:center;justify-content:center"><img src="../../assets/food/pastilla.svg" alt="" style="width:200px;height:200px"><span aria-hidden="true" style="position:absolute;right:8px;bottom:8px;width:36px;height:36px;border-radius:18px;background:#FFFFFF;color:#2B33C6;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(23,20,43,.15)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></div>
+        <b style="font-size:15px">72 DH</b>
+        <span style="font-size:14px;font-weight:600;line-height:1.3">Pastilla au poulet</span>
+        <span style="font-size:12.5px;color:#6B6880">580 kcal</span>
+      </a>
+      <a href="Dish.dc.html" style="display:flex;flex-direction:column;gap:6px">
+        <div style="position:relative;height:140px;border-radius:16px;background:#FBE7DF;overflow:hidden;display:flex;align-items:center;justify-content:center"><img src="../../assets/food/harira.svg" alt="" style="width:200px;height:200px"><span aria-hidden="true" style="position:absolute;right:8px;bottom:8px;width:36px;height:36px;border-radius:18px;background:#FFFFFF;color:#2B33C6;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(23,20,43,.15)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></div>
+        <b style="font-size:15px">18 DH</b>
+        <span style="font-size:14px;font-weight:600;line-height:1.3">Harira &amp; dattes</span>
+        <span style="font-size:12.5px;color:#6B6880">340 kcal</span>
+      </a>
+    </div>
+  </section>
+
+  <section id="tajines" style="padding:24px 16px 0;display:flex;flex-direction:column">
+    <h2 style="margin:0 0 4px;font-weight:800;font-size:20px;letter-spacing:-.03em">Tajines</h2>
+    <a href="Dish.dc.html" style="padding:14px 0;border-bottom:1px solid #ECEAF1;display:flex;gap:14px;align-items:center">
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px"><b style="font-size:15.5px">Tajine kefta &amp; œufs</b><span style="font-size:13.5px;line-height:1.4;color:#6B6880">Boulettes épicées, sauce tomate au cumin, œufs coulants.</span><span style="font-size:14px;display:flex;gap:8px"><b>55 DH</b><span style="color:#6B6880">640 kcal</span></span></div>
+      <div style="position:relative;width:96px;height:96px;flex:none;border-radius:16px;background:#FBE7DF;overflow:hidden;display:flex;justify-content:center"><img src="../../assets/food/tajine.svg" alt="" style="width:130px;height:130px"><span aria-hidden="true" style="position:absolute;right:6px;bottom:6px;width:30px;height:30px;border-radius:15px;background:#FFFFFF;color:#2B33C6;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></div>
+    </a>
+    <a href="Dish.dc.html" style="padding:14px 0;border-bottom:1px solid #ECEAF1;display:flex;gap:14px;align-items:center">
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px"><b style="font-size:15.5px">Tajine poulet citron confit</b><span style="font-size:13.5px;line-height:1.4;color:#6B6880">Poulet beldi, olives violettes, citron confit maison.</span><span style="font-size:14px;display:flex;gap:8px"><b>62 DH</b><span style="color:#6B6880">580 kcal</span></span></div>
+      <div style="position:relative;width:96px;height:96px;flex:none;border-radius:16px;background:#FFF1D6;overflow:hidden;display:flex;justify-content:center"><img src="../../assets/food/tajine.svg" alt="" style="width:130px;height:130px"><span aria-hidden="true" style="position:absolute;right:6px;bottom:6px;width:30px;height:30px;border-radius:15px;background:#FFFFFF;color:#2B33C6;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></div>
+    </a>
+    <a href="Dish.dc.html" style="padding:14px 0;border-bottom:1px solid #ECEAF1;display:flex;gap:14px;align-items:center">
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px"><b style="font-size:15.5px">Tajine de poisson chermoula</b><span style="font-size:13.5px;line-height:1.4;color:#6B6880">Filet de merlan, poivrons, pommes de terre, chermoula.</span><span style="font-size:14px;display:flex;gap:8px"><b>70 DH</b><span style="color:#6B6880">470 kcal</span></span></div>
+      <div style="position:relative;width:96px;height:96px;flex:none;border-radius:16px;background:#E8EAFD;overflow:hidden;display:flex;justify-content:center"><img src="../../assets/food/tajine.svg" alt="" style="width:130px;height:130px"><span aria-hidden="true" style="position:absolute;right:6px;bottom:6px;width:30px;height:30px;border-radius:15px;background:#FFFFFF;color:#2B33C6;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></div>
+    </a>
+  </section>
+
+  <section id="couscous" style="padding:24px 16px 0;display:flex;flex-direction:column">
+    <h2 style="margin:0 0 4px;font-weight:800;font-size:20px;letter-spacing:-.03em">Couscous</h2>
+    <a href="Dish.dc.html" style="padding:14px 0;border-bottom:1px solid #ECEAF1;display:flex;gap:14px;align-items:center">
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px"><b style="font-size:15.5px">Couscous 7 khodar</b><span style="font-size:13.5px;line-height:1.4;color:#6B6880">Semoule roulée main, sept légumes, poulet ou viande.</span><span style="font-size:14px;display:flex;gap:8px"><b>65 DH</b><span style="color:#6B6880">690 kcal</span></span></div>
+      <div style="position:relative;width:96px;height:96px;flex:none;border-radius:16px;background:#E8EAFD;overflow:hidden;display:flex;align-items:center;justify-content:center"><img src="../../assets/food/couscous.svg" alt="" style="width:140px;height:140px"><span aria-hidden="true" style="position:absolute;right:6px;bottom:6px;width:30px;height:30px;border-radius:15px;background:#FFFFFF;color:#2B33C6;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></div>
+    </a>
+    <a href="Dish.dc.html" style="padding:14px 0;border-bottom:1px solid #ECEAF1;display:flex;gap:14px;align-items:center">
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px"><b style="font-size:15.5px">Couscous tfaya</b><span style="font-size:13.5px;line-height:1.4;color:#6B6880">Oignons caramélisés, raisins secs, amandes grillées.</span><span style="font-size:14px;display:flex;gap:8px"><b>75 DH</b><span style="color:#6B6880">820 kcal</span></span></div>
+      <div style="position:relative;width:96px;height:96px;flex:none;border-radius:16px;background:#FFF1D6;overflow:hidden;display:flex;align-items:center;justify-content:center"><img src="../../assets/food/couscous.svg" alt="" style="width:140px;height:140px"><span aria-hidden="true" style="position:absolute;right:6px;bottom:6px;width:30px;height:30px;border-radius:15px;background:#FFFFFF;color:#2B33C6;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></div>
+    </a>
+  </section>
+
+  <section id="boissons" style="padding:24px 16px 0;display:flex;flex-direction:column">
+    <h2 style="margin:0 0 4px;font-weight:800;font-size:20px;letter-spacing:-.03em">Boissons</h2>
+    <a href="Dish.dc.html" style="padding:14px 0;border-bottom:1px solid #ECEAF1;display:flex;gap:14px;align-items:center">
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px"><b style="font-size:15.5px">Atay na3na3</b><span style="font-size:13.5px;line-height:1.4;color:#6B6880">Thé vert, menthe fraîche, sucre à part.</span><b style="font-size:14px">12 DH</b></div>
+      <div style="position:relative;width:96px;height:96px;flex:none;border-radius:16px;background:#E3F4EC;overflow:hidden;display:flex;align-items:flex-end;justify-content:center"><img src="../../assets/food/atay.svg" alt="" style="width:110px;height:110px"><span aria-hidden="true" style="position:absolute;right:6px;bottom:6px;width:30px;height:30px;border-radius:15px;background:#FFFFFF;color:#2B33C6;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></div>
+    </a>
+    <a href="Dish.dc.html" style="padding:14px 0;display:flex;gap:14px;align-items:center">
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px"><b style="font-size:15.5px">Jus d'orange pressé</b><span style="font-size:13.5px;line-height:1.4;color:#6B6880">Oranges de Berkane, pressées à la commande.</span><b style="font-size:14px">15 DH</b></div>
+      <span aria-label="Ajouter" style="width:40px;height:40px;flex:none;border-radius:20px;background:#F4F3F7;color:#2B33C6;display:flex;align-items:center;justify-content:center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+    </a>
+  </section>
+
+  <a href="Cart.dc.html" style="margin:auto 16px 32px;min-height:56px;border-radius:28px;background:#2B33C6;color:#FFFFFF;padding:0 8px 0 10px;display:flex;align-items:center;gap:12px;box-shadow:0 10px 24px rgba(43,51,198,.3)">
+    <span style="width:36px;height:36px;border-radius:18px;background:#FFFFFF;color:#2B33C6;font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center">2</span>
+    <b style="flex:1;font-size:16px">Voir le panier</b>
+    <span style="min-height:40px;padding:0 14px;border-radius:20px;background:rgba(255,255,255,.18);font-weight:800;font-size:15px;display:flex;align-items:center">155 DH</span>
+  </a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":2060}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
