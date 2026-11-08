@@ -100,3 +100,42 @@ export function computeOrderTotals({ subtotal, promoCode, tip = 0, firstOrder = 
   const total = subtotal + deliveryFee - discount + tip;
   return { subtotal, deliveryFee, baseDeliveryFee: DELIVERY_FEE, freeDelivery, discount, tip, total, nojoum: Math.round(total * NOJOUM_PER_DH) };
 }
+
+// ── Cart line summaries ────────────────────────────────────────────
+
+/** Short label for an option: "Duo · 2 pers." → "Duo". */
+function shortLabel(label: string): string {
+  return label.split(" · ")[0];
+}
+
+/** "Duo · Har · Khobz dar · Sans oignons" — chosen options in group order. */
+export function dishSelectionSummary(item: MenuItem, selections: Record<string, string[]>): string {
+  const parts: string[] = [];
+  for (const group of item.optionGroups ?? []) {
+    const chosen = selections[group.id] ?? [];
+    for (const option of group.options) if (chosen.includes(option.id)) parts.push(shortLabel(option.label));
+  }
+  return parts.join(" · ");
+}
+
+/** "Quinoa · Poulet chermoula · Zaalouk, avocat, pois chiches · Chermoula" (as on the cart line). */
+export function composeSummary(selection: Record<ComposeStep, string[]>): string {
+  const names = (step: ComposeStep) => composeIngredients.filter((i) => i.step === step && selection[step]?.includes(i.id)).map((i) => i.name);
+  const veg = names("veg").map((name, i) => (i === 0 ? name : name.toLowerCase())).join(", ");
+  return [...names("base"), ...names("protein"), veg, ...names("sauce"), ...names("extra")].filter(Boolean).join(" · ");
+}
+
+/** Every chosen ingredient name, in screen order (Compose summary line). */
+export function composeChosenNames(selection: Record<ComposeStep, string[]>): string[] {
+  return composeIngredients.filter((i) => selection[i.step]?.includes(i.id)).map((i) => i.name);
+}
+
+/** Required option groups still missing a choice (dish sheet). */
+export function missingRequiredGroups(item: MenuItem, selections: Record<string, string[]>): string[] {
+  return (item.optionGroups ?? []).filter((g) => g.required && (selections[g.id]?.length ?? 0) < Math.max(1, g.min)).map((g) => g.title);
+}
+
+/** True when the dish can't be added without opening its sheet. */
+export function needsOptions(item: MenuItem): boolean {
+  return (item.optionGroups ?? []).some((g) => g.required && !(g.defaultSelected?.length));
+}

@@ -21,7 +21,7 @@ export interface FoodImageProps {
   /** Illustration size as a multiple of the slot height. */
   scale?: number;
   /** Where the illustration sits: centered, or anchored to a corner and bleeding off it. */
-  placement?: "center" | "bottomEnd" | "topEnd";
+  placement?: "center" | "bottomEnd" | "topEnd" | "topStart";
   /** Extra shift in points (for corner placements: distance from the edge, negative = bleed). */
   offset?: { x?: number; y?: number };
   /** Describe the photo for screen readers; omit for decorative images. */
@@ -61,8 +61,9 @@ export function FoodImage({
       const translateY = height * offsetY + (offset?.y ?? 0);
       art = <Component width={size} height={size} style={[styles.noShrink, { transform: [{ translateX: offset?.x ?? 0 }, { translateY }] }]} />;
     } else {
-      const edge = placement === "bottomEnd" ? { bottom: offset?.y ?? 0 } : { top: offset?.y ?? 0 };
-      art = <Component width={size} height={size} style={[styles.corner, { end: offset?.x ?? 0 }, edge]} />;
+      const vertical = placement === "bottomEnd" ? { bottom: offset?.y ?? 0 } : { top: offset?.y ?? 0 };
+      const horizontal = placement === "topStart" ? { start: offset?.x ?? 0 } : { end: offset?.x ?? 0 };
+      art = <Component width={size} height={size} style={[styles.corner, horizontal, vertical]} />;
     }
   }
 

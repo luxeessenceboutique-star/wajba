@@ -42,7 +42,7 @@ export function SummaryBox({ rows, total, footnote, style }: SummaryBoxProps) {
       ))}
       {total && (
         <>
-          <View style={styles.divider} />
+          {rows.length > 0 && <View style={styles.divider} />}
           <View style={styles.row} accessible accessibilityLabel={`${total.label}, ${total.value}`}>
             <Text variant="total">{total.label}</Text>
             <Text variant="total">{total.value}</Text>

@@ -2,6 +2,16 @@
 import type { ComposeIngredient, ComposeStep } from "@/types/models";
 
 export const COMPOSE_BASE_PRICE = 45;
+/** Composed bowls are cooked by Wajba Fit (cart shows "… + Wajba Fit · une seule livraison"). */
+export const COMPOSE_KITCHEN_ID = "wajba-fit";
+export const COMPOSE_IMAGE = "bowl";
+
+/** Steps in screen order. */
+export const composeSteps: ComposeStep[] = ["base", "protein", "veg", "sauce", "extra"];
+
+export function emptyComposeSelection(): Record<ComposeStep, string[]> {
+  return { base: [], protein: [], veg: [], sauce: [], extra: [] };
+}
 
 export const composeIngredients: ComposeIngredient[] = [
   { id: "couscous", step: "base", name: "Couscous", kcal: 360, protein: 12, carbs: 70, fat: 4, priceDelta: 0, color: "#E8C068" },

@@ -8,6 +8,7 @@ import { api } from "@/api";
 import { EmptyState, IconButton, LoadingState, MenuRow, SearchField, Text } from "@/components";
 import { getKitchen } from "@/data/kitchens";
 import { t } from "@/i18n";
+import { quickAdd } from "@/lib/cartActions";
 import { useAsync } from "@/lib/useAsync";
 import { colors, metrics, spacing } from "@/theme";
 import type { MenuItem } from "@/types/models";
@@ -62,7 +63,7 @@ export default function SearchScreen() {
           }
           ListEmptyComponent={<EmptyState icon="search" title={t("search.noResultsTitle")} text={t("search.noResultsText")} />}
           renderItem={({ item, index }) => (
-            <MenuRow item={item} onPress={() => openDish(item)} onAdd={() => openDish(item)} divider={index < items.length - 1} />
+            <MenuRow item={item} onPress={() => openDish(item)} onAdd={() => quickAdd(item)} divider={index < items.length - 1} />
           )}
         />
       )}

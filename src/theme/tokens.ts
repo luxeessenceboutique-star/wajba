@@ -19,6 +19,8 @@ export const colors = {
   star: raw.color.saffron,
   /** Translucent pill on the blue cart bar ("155 DH"). */
   onPrimaryTranslucent: "rgba(255,255,255,0.18)",
+  /** Goal pill text when above the kcal goal (deep terracotta on its tint). */
+  terracottaOnTint: "#8E3415",
   /** Thin outline so light ingredient dots (white "Sans sauce") stay visible. */
   dotOutline: "rgba(23,20,43,0.15)",
   /** Dimmed overlay behind sheets and modals. */
@@ -142,6 +144,8 @@ const fromSpec = {
   cardMeta: toTextStyle({ size: 13, weight: 500 }),
   /** Avatar initials (14/800). */
   initials: toTextStyle({ size: 14, weight: 800 }),
+  /** Initials in small 30 pt avatars (11/800). */
+  initialsSmall: toTextStyle({ size: 11, weight: 800 }),
   /** Initials in the large 64 pt kitchen avatar (18/800). */
   initialsLarge: toTextStyle({ size: 18, weight: 800 }),
   /** Kitchen section tabs (15/600, active 15/800). */
@@ -165,6 +169,19 @@ const fromSpec = {
   tagline: toTextStyle({ size: 17, weight: 600 }),
   /** Phone number / code input (22/700). */
   bigInput: toTextStyle({ size: 22, weight: 700, letterSpacing: "0.02em" }),
+  /** Dish sheet price (21/700) and old price (15/500). */
+  priceHero: toTextStyle({ size: 21, weight: 700 }),
+  priceHeroOld: toTextStyle({ size: 15, weight: 500 }),
+  /** Dish description (14.5/500, line-height 1.5). */
+  description: toTextStyle({ size: 14.5, weight: 500, lineHeight: 1.5 }),
+  /** Compose summary of chosen ingredients (13/500, line-height 1.45). */
+  summaryLine: toTextStyle({ size: 13, weight: 500, lineHeight: 1.45 }),
+  /** Info chips: kcal, protein, rating (13/700). */
+  infoChip: toTextStyle({ size: 13, weight: 700 }),
+  /** Bottom-bar total amount (22/800). */
+  totalBig: toTextStyle({ size: 22, weight: 800, letterSpacing: "-0.02em" }),
+  /** Multi-line text input (15/400). */
+  textArea: toTextStyle({ size: 15, weight: 400, lineHeight: 1.4 }),
   /** Cart bar count and total (15/800). */
   cartCount: toTextStyle({ size: 15, weight: 800 }),
   /** Small pill badge on promo banners (11.5/800). */

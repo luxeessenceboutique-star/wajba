@@ -12,6 +12,8 @@ import {
   EmptyState,
   ErrorState,
   FilterChipRow,
+  FLOATING_CART_SPACE,
+  FloatingCartBar,
   Icon,
   IconButton,
   KitchenCard,
@@ -66,7 +68,7 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.screen}>
-      <ScrollView contentContainerStyle={{ paddingTop: insets.top + metrics.gap.xs, paddingBottom: spacing.sectionGap * 2 }}>
+      <ScrollView contentContainerStyle={{ paddingTop: insets.top + metrics.gap.xs, paddingBottom: spacing.sectionGap + FLOATING_CART_SPACE }}>
         {/* Header: address + notifications, search */}
         <View style={styles.header}>
           <View style={styles.headerRow}>
@@ -129,6 +131,8 @@ export default function HomeScreen() {
           <PrimaryButton label={t("home.seeAllKitchens", { count: KITCHEN_COUNT })} variant="outline" size="medium" onPress={() => router.push("/kitchens")} />
         </View>
       </ScrollView>
+
+      <FloatingCartBar aboveTabBar />
 
       <Sheet visible={addressOpen} onClose={() => setAddressOpen(false)} title={t("home.addressesTitle")}>
         <AddressList onDone={() => setAddressOpen(false)} />

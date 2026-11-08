@@ -17,6 +17,8 @@ interface UserState {
   addressId: string;
   favoriteItems: string[];
   favoriteKitchens: string[];
+  dailyKcalGoal: number;
+  mealsPerDay: number;
 
   signIn: (phone?: string) => void;
   signOut: () => void;
@@ -39,6 +41,9 @@ const initial = {
   addressId: mockUser.addresses[0].id,
   favoriteItems: [] as string[],
   favoriteKitchens: [] as string[],
+  dailyKcalGoal: mockUser.dailyKcalGoal,
+  /** Meals per day used to split the daily goal (Compose goal pill). */
+  mealsPerDay: 3,
 };
 
 export const useUserStore = create<UserState>()((set) => ({

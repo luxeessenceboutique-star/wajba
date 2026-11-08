@@ -8,6 +8,8 @@ import { api, type KitchenMenu } from "@/api";
 import {
   EmptyState,
   ErrorState,
+  FLOATING_CART_SPACE,
+  FloatingCartBar,
   FoodImage,
   IconButton,
   InfoStrip,
@@ -22,6 +24,7 @@ import {
   type InfoItem,
 } from "@/components";
 import { t } from "@/i18n";
+import { quickAdd } from "@/lib/cartActions";
 import { formatCount, formatEta, formatPrice, formatRating } from "@/lib/format";
 import { useAsync } from "@/lib/useAsync";
 import { useUserStore } from "@/store/user";
@@ -128,7 +131,7 @@ function KitchenPage({ data, initialSection }: { data: KitchenMenu; initialSecti
 
   return (
     <View style={styles.screen}>
-      <ScrollView ref={scroller} onScroll={onScroll} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: insets.bottom + spacing.sectionGap * 2 }}>
+      <ScrollView ref={scroller} onScroll={onScroll} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: insets.bottom + spacing.sectionGap + FLOATING_CART_SPACE }}>
         {/* Cover with floating buttons */}
         <FoodImage source={kitchen.coverImage} tint={kitchen.coverTint} height={m.coverHeight} scale={m.coverArtScale} accessibilityLabel={kitchen.name}>
           <View style={[styles.coverButtons, { top: insets.top + metrics.gap.m }]}>
@@ -176,7 +179,7 @@ function KitchenPage({ data, initialSection }: { data: KitchenMenu; initialSecti
             </Text>
             <View style={styles.grid}>
               {popular.map((item) => (
-                <MenuGridCard key={item.id} item={item} onPress={() => openDish(item)} onAdd={() => openDish(item)} style={styles.gridCell} />
+                <MenuGridCard key={item.id} item={item} onPress={() => openDish(item)} onAdd={() => quickAdd(item)} style={styles.gridCell} />
               ))}
             </View>
           </View>
@@ -188,11 +191,13 @@ function KitchenPage({ data, initialSection }: { data: KitchenMenu; initialSecti
               {s.title}
             </Text>
             {s.items.map((item) => (
-              <MenuRow key={item.id} item={item} onPress={() => openDish(item)} onAdd={() => openDish(item)} />
+              <MenuRow key={item.id} item={item} onPress={() => openDish(item)} onAdd={() => quickAdd(item)} />
             ))}
           </View>
         ))}
       </ScrollView>
+
+      <FloatingCartBar />
 
       {/* Compact header + tabs, pinned under the status bar once the inline tabs scroll away. */}
       {stuck && (

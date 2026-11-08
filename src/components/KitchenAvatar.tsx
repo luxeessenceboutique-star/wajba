@@ -25,7 +25,10 @@ export function KitchenAvatar({ kitchen, size = metrics.avatar.medium, bordered 
         style,
       ]}
     >
-      <Text variant={size >= metrics.avatar.large ? "initialsLarge" : "initials"} color={kitchen.initialsColor ?? colors.white}>
+      <Text
+        variant={size >= metrics.avatar.large ? "initialsLarge" : size <= metrics.avatar.small ? "initialsSmall" : "initials"}
+        color={kitchen.initialsColor ?? colors.white}
+      >
         {kitchen.initials}
       </Text>
     </View>

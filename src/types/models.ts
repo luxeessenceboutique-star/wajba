@@ -68,6 +68,8 @@ export interface MenuItem {
   section: string;
   name: string;
   description: string;
+  /** Longer text for the dish sheet (falls back to `description`). */
+  longDescription?: string;
   price: number;
   oldPrice?: number;
   kcal?: number;
@@ -77,6 +79,7 @@ export interface MenuItem {
   image?: string;
   tint?: string;
   rating?: number;
+  ratingCount?: number;
   popular?: boolean;
   allergens?: string[];
   profiles?: ProfileId[];
@@ -107,6 +110,10 @@ export interface CartLine {
   kcal?: number;
   selections: Record<string, string[]>;
   note?: string;
+  /** For display and the "one delivery" kitchens line. */
+  kitchenId: string;
+  image?: string;
+  tint?: string;
 }
 
 export type OrderStatus = "confirmed" | "preparing" | "on_the_way" | "delivered" | "cancelled";

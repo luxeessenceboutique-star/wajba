@@ -21,7 +21,7 @@ export function CartBar({ count, total, onPress, style }: CartBarProps) {
     <Touchable
       onPress={onPress}
       accessibilityRole="button"
-      accessibilityLabel={t("cart.seeCartLabel", { count, total: formatPrice(total) })}
+      accessibilityLabel={count === 1 ? t("cart.seeCartLabelOne", { total: formatPrice(total) }) : t("cart.seeCartLabel", { count, total: formatPrice(total) })}
       style={[styles.bar, style]}
     >
       <View style={styles.count}>

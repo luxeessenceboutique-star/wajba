@@ -43,15 +43,18 @@ src/app/                Screens (Expo Router: every file is a route)
   (tabs)/               Tab bar: home (03 Accueil), plan, orders, account
   kitchen/[id].tsx      04 Kitchen page (sticky section tabs)
   search.tsx, kitchens.tsx, notifications.tsx
-  dish/[id].tsx, compose.tsx   Placeholders until phase 3
+  dish/[id].tsx         05 Dish option sheet (modal)
+  compose.tsx           06 Compose ta wajba
+  cart.tsx              07 Cart (lines + subtotal; checkout in phase 4)
   dev.tsx               Component gallery
 src/api/                Mock API: async functions over src/data (swap for the real backend later)
-src/store/              Zustand stores (user: auth, profiles, address, favorites)
+src/store/              Zustand stores: user (auth, profiles, address, favorites, kcal goal), cart
 src/components/         Component library (DESIGN_SPEC §3) — import from "@/components"
 src/theme/              tokens.ts reads design/tokens.json; metrics.ts holds component sizes
 src/i18n/               UI strings (fr.ts) — every visible string lives here (Arabic/English later)
 src/data/               Mock data (DESIGN_SPEC §7–8): kitchens, menu, compose, home, rules
-src/lib/                format.ts (55 DH, 4,8, 2,1k…), pricing.ts (dish, compose and order totals)
+src/lib/                format.ts (55 DH, 4,8, 2,1k…), pricing.ts (dish, compose and order totals),
+                        cartActions.ts (dish / bowl → cart line, quick add)
 src/assets/             Illustration registry (keys like "tajine" → SVG)
 src/types/              Data model (DESIGN_SPEC §6)
 ```
@@ -72,8 +75,8 @@ src/types/              Data model (DESIGN_SPEC §6)
 |---|---|---|
 | 1 | Theme from tokens, fonts, component library, `/dev` gallery | ✅ done |
 | 2 | Navigation; screens 01 Splash, 02 Profile picker, 03 Home, 04 Kitchen (+ phone login, search, address sheet) | ✅ done |
-| 3 | 05 Dish option sheet, 06 Compose (rules §7), cart store | next |
-| 4 | 07 Cart, 08 Payment (mock), 09 Tracking (mock timer), floating cart bar | |
+| 3 | 05 Dish option sheet, 06 Compose (rules §7), cart store, floating cart bar | ✅ done |
+| 4 | 07 Cart (full), 08 Payment (mock), 09 Tracking (mock timer) | next |
 | 5 | 10 Ma semaine (plans), 11 Mon compte | |
 
 All prices, calories, ratings, names and reviews are placeholders from the designs.

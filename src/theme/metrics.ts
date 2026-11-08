@@ -43,6 +43,12 @@ export const metrics = {
   notice: { minHeight: 48, radius: 14, paddingX: 14, gap: 10 },
   kitchenPage: { coverHeight: 220, coverArtScale: 1.48, compactHeaderHeight: 56, avatarOverlap: 32 },
   splash: { markWidth: 84, wordmarkSize: 58, arabicSize: 26, sheetPaddingTop: 28, sheetPaddingX: 20, sheetGap: 18, buttonGap: 10 },
+  infoChip: { height: 30, radius: 15, paddingX: 10, gap: 6 },
+  textArea: { minHeight: 92, radius: 14, paddingX: 14, paddingY: 12 },
+  composePreview: { height: 156, radius: 22, imageSize: 200, imageOffsetStart: -44, imageOffsetTop: -22, contentStart: 168, contentEnd: 14, contentTop: 16, contentBottom: 14 },
+  goalPill: { height: 24, radius: 12, paddingX: 9 },
+  cartLine: { image: 64, imageRadius: 16, gap: 14, paddingY: 14 },
+  dishSheet: { heroHeight: 300, heroArtScale: 1.2, buttonInset: 16 },
   profileCard: { minHeight: 150, radius: 20, padding: 14, circle: 72, art: 66, check: 24, checkInset: 12, gap: 10 },
   hairline: 1,
   /** Opacity of inert rows/chips (group max reached) and disabled stepper buttons. */

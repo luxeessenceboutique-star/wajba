@@ -79,9 +79,11 @@ export interface OptionRowProps {
   disabled?: boolean;
   onPress: () => void;
   divider?: boolean;
+  /** Bolder label (15/600), used for Compose ingredient rows. */
+  emphasis?: boolean;
 }
 
-export function OptionRow({ label, sublabel, leading, trailingText, control, selected, disabled = false, onPress, divider = true }: OptionRowProps) {
+export function OptionRow({ label, sublabel, leading, trailingText, control, selected, disabled = false, onPress, divider = true, emphasis = false }: OptionRowProps) {
   return (
     <Touchable
       onPress={onPress}
@@ -94,7 +96,7 @@ export function OptionRow({ label, sublabel, leading, trailingText, control, sel
     >
       {leading}
       <View style={styles.rowText}>
-        <Text variant="optionLabel" color={disabled ? "mutedLight" : "ink"}>
+        <Text variant={emphasis ? "rowLabel" : "optionLabel"} color={disabled ? "mutedLight" : "ink"}>
           {label}
         </Text>
         {sublabel && (
