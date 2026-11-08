@@ -6,6 +6,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { api } from "@/api";
 import {
+  AddressSheet,
   CategoryGrid,
   ComposeCard,
   DishCard,
@@ -18,12 +19,10 @@ import {
   IconButton,
   KitchenCard,
   LoadingState,
-  OptionRow,
   PrimaryButton,
   PromoCarousel,
   SearchField,
   SectionHeader,
-  Sheet,
   Text,
   Touchable,
 } from "@/components";
@@ -134,41 +133,11 @@ export default function HomeScreen() {
 
       <FloatingCartBar aboveTabBar />
 
-      <Sheet visible={addressOpen} onClose={() => setAddressOpen(false)} title={t("home.addressesTitle")}>
-        <AddressList onDone={() => setAddressOpen(false)} />
-      </Sheet>
+      <AddressSheet visible={addressOpen} onClose={() => setAddressOpen(false)} />
     </View>
   );
 }
 
-function AddressList({ onDone }: { onDone: () => void }) {
-  const addresses = useUserStore((s) => s.addresses);
-  const addressId = useUserStore((s) => s.addressId);
-  const setAddress = useUserStore((s) => s.setAddress);
-  return (
-    <View accessibilityRole="radiogroup">
-      {addresses.map((a, i) => (
-        <OptionRow
-          key={a.id}
-          label={a.label}
-          sublabel={`${a.line}, ${a.city}`}
-          leading={
-            <View style={styles.addressIcon}>
-              <Icon name="mapPin" color={colors.ink} />
-            </View>
-          }
-          control="radio"
-          selected={a.id === addressId}
-          divider={i < addresses.length - 1}
-          onPress={() => {
-            setAddress(a.id);
-            onDone();
-          }}
-        />
-      ))}
-    </View>
-  );
-}
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.background },
@@ -186,12 +155,4 @@ const styles = StyleSheet.create({
   kitchens: { gap: spacing.pagePadding },
   dishList: { paddingHorizontal: spacing.pagePadding, gap: metrics.gap.xl },
   inlineEmpty: { flexGrow: 0, paddingVertical: metrics.gap.xxl },
-  addressIcon: {
-    width: metrics.listRow.iconCircle,
-    height: metrics.listRow.iconCircle,
-    borderRadius: metrics.listRow.iconCircle / 2,
-    backgroundColor: colors.surface,
-    alignItems: "center",
-    justifyContent: "center",
-  },
 });

@@ -72,6 +72,9 @@ const icons = {
     shapes: [{ d: "M16 3c-1.5.2-3 1.4-3 3.2M12 8c-2-1-6-.5-6 5 0 4 2.5 8 4.5 8 1 0 1.5-.6 2.5-.6s1.5.6 2.5.6c1.6 0 3.2-2.4 3.8-4.6-1.8-.8-2.8-2.4-2.6-4.4.1-1.4 1-2.6 2.2-3.2C17.6 7 14.5 7 12 8z" }],
   },
   clock: { shapes: [{ circle: [12, 12, 9] }, { d: "M12 7v5l3 2" }] },
+  wallet: { shapes: [{ d: "M3 7a2 2 0 0 1 2-2h13v4M3 7v11a2 2 0 0 0 2 2h14V9H5a2 2 0 0 1-2-2zM16 14h2" }] },
+  cash: { shapes: [{ d: "M3 7h18v10H3zM12 9.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z" }] },
+  scooter: { shapes: [{ circle: [5.5, 17, 3.3] }, { circle: [18.5, 17, 3.3] }, { d: "M9 17h6l2-8h3M5.5 13.5V10h5" }] },
   /** Generic "G" mark used on the Google button in the design (no third-party logo). */
   google: { shapes: [{ circle: [12, 12, 10] }, { d: "M12 12h6" }] },
 } satisfies Record<string, IconDef>;

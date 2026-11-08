@@ -21,6 +21,8 @@ Built from the design handoff in [`design/`](design/) (spec: [`design/DESIGN_SPE
 
 The app opens on the Splash / Login screen. Everything is mocked: "Continuer avec mon numéro"
 accepts any Moroccan mobile number and **any 4-digit code**; Google and Apple sign in instantly.
+Payment always succeeds, and order tracking runs on a sped-up demo timeline (delivered in ~40 s).
+Demo promo codes: `BUREAU15` (−15 DH) and `BSAHA20` (−20 %, first order only).
 The component gallery is still available from **Compte → Galerie des composants** (`/dev`).
 
 ## Checks
@@ -40,21 +42,23 @@ src/app/                Screens (Expo Router: every file is a route)
   index.tsx             01 Splash / Login
   phone.tsx             Phone number + SMS code (mock)
   profile.tsx           02 Profile picker (also "Modifier mes profils")
-  (tabs)/               Tab bar: home (03 Accueil), plan, orders, account
+  (tabs)/               Tab bar: home (03 Accueil), plan, orders (order history), account
   kitchen/[id].tsx      04 Kitchen page (sticky section tabs)
   search.tsx, kitchens.tsx, notifications.tsx
   dish/[id].tsx         05 Dish option sheet (modal)
   compose.tsx           06 Compose ta wajba
-  cart.tsx              07 Cart (lines + subtotal; checkout in phase 4)
+  cart.tsx              07 Cart (suggestions, switches, promo codes, totals)
+  checkout.tsx          08 Payment (delivery time, methods, tip — mock payment)
+  order/[id].tsx        09 Tracking (mock timeline, moving rider, handover code)
   dev.tsx               Component gallery
 src/api/                Mock API: async functions over src/data (swap for the real backend later)
-src/store/              Zustand stores: user (auth, profiles, address, favorites, kcal goal), cart
+src/store/              Zustand stores: user (auth, profiles, address, favorites, kcal goal), cart, orders
 src/components/         Component library (DESIGN_SPEC §3) — import from "@/components"
 src/theme/              tokens.ts reads design/tokens.json; metrics.ts holds component sizes
 src/i18n/               UI strings (fr.ts) — every visible string lives here (Arabic/English later)
 src/data/               Mock data (DESIGN_SPEC §7–8): kitchens, menu, compose, home, rules
 src/lib/                format.ts (55 DH, 4,8, 2,1k…), pricing.ts (dish, compose and order totals),
-                        cartActions.ts (dish / bowl → cart line, quick add)
+                        cartActions.ts (dish / bowl → cart line, quick add), orders.ts (live status, slots)
 src/assets/             Illustration registry (keys like "tajine" → SVG)
 src/types/              Data model (DESIGN_SPEC §6)
 ```
@@ -76,7 +80,7 @@ src/types/              Data model (DESIGN_SPEC §6)
 | 1 | Theme from tokens, fonts, component library, `/dev` gallery | ✅ done |
 | 2 | Navigation; screens 01 Splash, 02 Profile picker, 03 Home, 04 Kitchen (+ phone login, search, address sheet) | ✅ done |
 | 3 | 05 Dish option sheet, 06 Compose (rules §7), cart store, floating cart bar | ✅ done |
-| 4 | 07 Cart (full), 08 Payment (mock), 09 Tracking (mock timer) | next |
-| 5 | 10 Ma semaine (plans), 11 Mon compte | |
+| 4 | 07 Cart (full), 08 Payment (mock), 09 Tracking (mock timer), order history | ✅ done |
+| 5 | 10 Ma semaine (plans), 11 Mon compte | next |
 
 All prices, calories, ratings, names and reviews are placeholders from the designs.

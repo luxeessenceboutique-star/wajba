@@ -182,6 +182,15 @@ const fromSpec = {
   totalBig: toTextStyle({ size: 22, weight: 800, letterSpacing: "-0.02em" }),
   /** Multi-line text input (15/400). */
   textArea: toTextStyle({ size: 15, weight: 400, lineHeight: 1.4 }),
+  /** Tracking: big countdown (30/800) and handover code (26/800, wide tracking). */
+  countdown: toTextStyle({ size: 30, weight: 800, lineHeight: 1.1, letterSpacing: "-0.04em" }),
+  handoverCode: toTextStyle({ size: 26, weight: 800, letterSpacing: "0.3em" }),
+  /** Suggestion card name / price (13.5/600, 13.5/700). */
+  suggestionName: toTextStyle({ size: 13.5, weight: 600 }),
+  suggestionPrice: toTextStyle({ size: 13.5, weight: 700 }),
+  /** Select card title (14.5/700) and settings row text (14.5/500). */
+  selectTitle: toTextStyle({ size: 14.5, weight: 700 }),
+  rowText: toTextStyle({ size: 14.5, weight: 500 }),
   /** Cart bar count and total (15/800). */
   cartCount: toTextStyle({ size: 15, weight: 800 }),
   /** Small pill badge on promo banners (11.5/800). */

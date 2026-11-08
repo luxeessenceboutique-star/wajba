@@ -118,6 +118,15 @@ export interface CartLine {
 
 export type OrderStatus = "confirmed" | "preparing" | "on_the_way" | "delivered" | "cancelled";
 
+export type PaymentMethod = "card" | "apple_pay" | "google_pay" | "wallet" | "cash";
+
+export interface Rider {
+  name: string;
+  rating: number;
+  vehicle: string;
+  phone: string;
+}
+
 export interface Order {
   id: string;
   lines: CartLine[];
@@ -126,13 +135,23 @@ export interface Order {
   discount: number;
   tip: number;
   total: number;
-  payment: "card" | "apple_pay" | "google_pay" | "wallet" | "cash";
+  payment: PaymentMethod;
+  /** "asap" or a time slot label, e.g. "13:00". */
   schedule: "asap" | string;
   addressId: string;
+  /** Status at creation; the live status is derived from `placedAt` (see lib/orders.ts). */
   status: OrderStatus;
   etaISO: string;
   handoverCode: string;
-  rider?: { name: string; rating: number; vehicle: string; phone: string };
+  rider?: Rider;
+  /** Epoch ms when the order was placed. */
+  placedAt: number;
+  /** Delivery time promised at checkout, in minutes. */
+  etaMinutes: number;
+  promoCode?: string;
+  cutlery: boolean;
+  invoice: boolean;
+  riderNote?: string;
 }
 
 export interface Plan {

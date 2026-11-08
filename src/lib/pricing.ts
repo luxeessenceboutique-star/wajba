@@ -3,7 +3,7 @@
  * Pure functions so screens and stores share one source of truth.
  */
 import { COMPOSE_BASE_PRICE, composeIngredients, composeRules } from "@/data/compose";
-import { DELIVERY_FEE, FREE_DELIVERY_FROM, NOJOUM_PER_DH, PROMO_CODES } from "@/data/rules";
+import { DELIVERY_FEE, FREE_DELIVERY_FROM, NOJOUM_PER_DH, PROMO_CODES, type PromoCode } from "@/data/rules";
 import type { ComposeStep, MenuItem } from "@/types/models";
 
 // ── Dish sheet ──────────────────────────────────────────────────────
@@ -138,4 +138,16 @@ export function missingRequiredGroups(item: MenuItem, selections: Record<string,
 /** True when the dish can't be added without opening its sheet. */
 export function needsOptions(item: MenuItem): boolean {
   return (item.optionGroups ?? []).some((g) => g.required && !(g.defaultSelected?.length));
+}
+
+// ── Promo codes ────────────────────────────────────────────────────
+
+export type PromoCheck = { ok: true; promo: PromoCode } | { ok: false; reason: "unknown" | "firstOrderOnly" };
+
+/** BSAHA20 = −20 % on the first order only; BUREAU15 = −15 DH (DESIGN_SPEC §7). */
+export function checkPromo(code: string, { firstOrder }: { firstOrder: boolean }): PromoCheck {
+  const promo = PROMO_CODES.find((p) => p.code === code.trim().toUpperCase());
+  if (!promo) return { ok: false, reason: "unknown" };
+  if (promo.firstOrderOnly && !firstOrder) return { ok: false, reason: "firstOrderOnly" };
+  return { ok: true, promo };
 }

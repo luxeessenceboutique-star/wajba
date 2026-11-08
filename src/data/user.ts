@@ -18,6 +18,9 @@ export const mockUser: User = {
   ],
 };
 
+/** Saved payment card (mock). */
+export const savedCard = { brand: "Visa", last4: "4821", expiry: "09/28" };
+
 /** Short form shown on Home: "Bureau · Bd Zerktouni". */
 export function shortAddress(address: { label: string; line: string }): string {
   return `${address.label} · ${address.line.split(",")[0]}`;

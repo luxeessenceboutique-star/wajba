@@ -7,7 +7,9 @@ import { categories, homeFilters, promos } from "@/data/home";
 import { kitchens } from "@/data/kitchens";
 import { menuItems } from "@/data/menu";
 import { mockUser } from "@/data/user";
-import type { Kitchen, MenuItem, User } from "@/types/models";
+import { MOCK_RIDER } from "@/data/rules";
+import { handoverCode } from "@/lib/orders";
+import type { Kitchen, MenuItem, Order, User } from "@/types/models";
 
 const LATENCY_MS = 250;
 
@@ -73,6 +75,23 @@ export const api = {
         .map((title) => ({ title, items: items.filter((m) => m.section === title) }))
         .filter((s) => s.items.length > 0);
       return respond({ kitchen, popular: items.filter((m) => m.popular), sections });
+    },
+  },
+
+  orders: {
+    /** Mock payment + order creation: always succeeds after a short wait. */
+    place: (input: Omit<Order, "id" | "status" | "etaISO" | "handoverCode" | "rider" | "placedAt">): Promise<Order> => {
+      const placedAt = Date.now();
+      const order: Order = {
+        ...input,
+        id: `WJ-${String(placedAt).slice(-6)}`,
+        status: "confirmed",
+        placedAt,
+        etaISO: new Date(placedAt + input.etaMinutes * 60_000).toISOString(),
+        handoverCode: handoverCode(),
+        rider: MOCK_RIDER,
+      };
+      return respond(order, LATENCY_MS * 4);
     },
   },
 

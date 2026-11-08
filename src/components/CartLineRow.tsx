@@ -13,12 +13,14 @@ const ART_SCALE = 1.35;
 
 export interface CartLineRowProps {
   line: CartLine;
-  onQtyChange: (qty: number) => void;
+  onQtyChange?: (qty: number) => void;
+  /** Order details: show "2 ×" instead of the stepper. */
+  readOnly?: boolean;
   divider?: boolean;
 }
 
 /** Cart line: image, name, chosen options, line price (+ kcal for composed bowls), compact stepper (0 removes). */
-export function CartLineRow({ line, onQtyChange, divider = true }: CartLineRowProps) {
+export function CartLineRow({ line, onQtyChange, readOnly = false, divider = true }: CartLineRowProps) {
   return (
     <View style={[styles.row, divider && styles.divider]}>
       <FoodImage source={line.image} tint={line.tint ?? colors.tints[0]} height={m.image} width={m.image} radius={m.imageRadius} scale={ART_SCALE} />
@@ -40,9 +42,15 @@ export function CartLineRow({ line, onQtyChange, divider = true }: CartLineRowPr
           )}
         </Text>
       </View>
-      <View accessibilityLabel={t("cart.lineQuantity", { name: line.name, count: line.qty })}>
-        <Stepper value={line.qty} onChange={onQtyChange} min={0} compact />
-      </View>
+      {readOnly || !onQtyChange ? (
+        <Text variant="price" accessibilityLabel={t("cart.lineQuantity", { name: line.name, count: line.qty })}>
+          {`${line.qty} ×`}
+        </Text>
+      ) : (
+        <View accessibilityLabel={t("cart.lineQuantity", { name: line.name, count: line.qty })}>
+          <Stepper value={line.qty} onChange={onQtyChange} min={0} compact />
+        </View>
+      )}
     </View>
   );
 }

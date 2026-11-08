@@ -11,8 +11,15 @@ export type NewCartLine = Omit<CartLine, "id">;
 
 interface CartState {
   lines: CartLine[];
+  /** Applied promo code (validated when applied). */
+  promoCode?: string;
+  cutlery: boolean;
+  invoice: boolean;
   add: (line: NewCartLine) => void;
   setQty: (id: string, qty: number) => void;
+  setPromoCode: (code?: string) => void;
+  setCutlery: (on: boolean) => void;
+  setInvoice: (on: boolean) => void;
   clear: () => void;
 }
 
@@ -32,6 +39,9 @@ function sameLine(a: NewCartLine, b: NewCartLine): boolean {
 
 export const useCartStore = create<CartState>()((set) => ({
   lines: [],
+  promoCode: undefined,
+  cutlery: false,
+  invoice: false,
   add: (line) =>
     set((s) => {
       const existing = s.lines.find((l) => sameLine(l, line));
@@ -40,7 +50,10 @@ export const useCartStore = create<CartState>()((set) => ({
     }),
   setQty: (id, qty) =>
     set((s) => ({ lines: qty <= 0 ? s.lines.filter((l) => l.id !== id) : s.lines.map((l) => (l.id === id ? { ...l, qty } : l)) })),
-  clear: () => set({ lines: [] }),
+  setPromoCode: (promoCode) => set({ promoCode }),
+  setCutlery: (cutlery) => set({ cutlery }),
+  setInvoice: (invoice) => set({ invoice }),
+  clear: () => set({ lines: [], promoCode: undefined, cutlery: false, invoice: false }),
 }));
 
 export function cartCount(lines: CartLine[]): number {
